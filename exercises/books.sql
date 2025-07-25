@@ -1,6 +1,6 @@
+DROP DATABASE IF EXISTS `demo_db`;
+CREATE DATABASE IF NOT EXISTS `demo_db`;
 USE `demo_db`;
-
-DROP TABLE IF EXISTS books;
 
 CREATE TABLE `authors` (
 	`author_id` INT PRIMARY KEY AUTO_INCREMENT,
@@ -23,6 +23,7 @@ CREATE TABLE `books` (
 
 
 -- Insert 20 authors
+DROP TABLE IF EXISTS `authors`;
 INSERT INTO `authors` (`first_name`, `last_name`, `nick_name`) VALUES
 ('Alice',    'Walker',     'Ally'),
 ('Brandon',  'Sanderson',  'B. Sand'),
@@ -207,4 +208,9 @@ SELECT COUNT(*) FROM `books`;
 SELECT COUNT(`first_name`) FROM `authors`;
 SELECT COUNT(DISTINCT `released_year`) FROM `books`;
 
--- how mayn tilte contains 'the'
+-- how many tilte contains 'the'
+SELECT COUNT(*) FROM `books`
+WHERE `title` LIKE '%the%';
+
+
+
