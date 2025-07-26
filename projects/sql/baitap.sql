@@ -154,6 +154,7 @@ VALUES
 ('Súp cua', 'supcua.jpg', 30000, 'Súp cua thơm ngon', 2);
 
 -- Thêm dữ liệu cho bảng order (chỉ một số user có order)
+DELETE FROM `order`;
 INSERT INTO `order` (`user_id`, `food_id`, `food_amount`, `code`) 
 VALUES
 (1, 1, 2, 'OD001'),
@@ -165,9 +166,36 @@ VALUES
 (8, 12, 2, 'OD007'),
 (10, 4, 1, 'OD008'),
 (12, 6, 1, 'OD009'),
-(13, 8, 2, 'OD010');
+(13, 8, 2, 'OD010'),
+(1, 2, 1, 'OD011'),
+(1, 3, 2, 'OD012'),
+(2, 4, 1, 'OD013'),
+(2, 5, 3, 'OD014'),
+(3, 1, 1, 'OD015'),
+(3, 2, 2, 'OD016'),
+(3, 6, 1, 'OD017'),
+(4, 3, 2, 'OD018'),
+(4, 8, 1, 'OD019'),
+(4, 9, 2, 'OD020'),
+(6, 1, 1, 'OD021'),
+(6, 4, 2, 'OD022'),
+(6, 10, 1, 'OD023'),
+(7, 2, 3, 'OD024'),
+(7, 3, 1, 'OD025'),
+(8, 5, 2, 'OD026'),
+(8, 7, 1, 'OD027'),
+(10, 6, 1, 'OD028'),
+(10, 9, 2, 'OD029'),
+(12, 11, 1, 'OD030'),
+(12, 12, 1, 'OD031'),
+(13, 13, 2, 'OD032'),
+(13, 14, 2, 'OD033'),
+(1, 5, 2, 'OD036'),
+(1, 6, 1, 'OD037'),
+(1, 7, 2, 'OD038');
 
 -- Thêm dữ liệu cho bảng like_res (chỉ một số user có like)
+DELETE FROM `like_res`;
 INSERT INTO `like_res` (`user_id`, `res_id`, `date_like`) 
 VALUES
 (1, 1, '2025-07-01 10:00:00'),
@@ -179,7 +207,14 @@ VALUES
 (8, 7, '2025-07-07 16:00:00'),
 (10, 8, '2025-07-08 17:00:00'),
 (12, 9, '2025-07-09 18:00:00'),
-(13, 10, '2025-07-10 19:00:00');
+(13, 10, '2025-07-10 19:00:00'),
+(1, 2, '2025-07-11 10:00:00'),
+(1, 3, '2025-07-12 11:00:00'),
+(1, 4, '2025-07-13 12:00:00'),
+(2, 5, '2025-07-14 13:00:00'),
+(3, 6, '2025-07-15 14:00:00'),
+(3, 7, '2025-07-16 15:00:00'),
+(4, 8, '2025-07-17 16:00:00');
 
 -- Thêm dữ liệu cho bảng rate_res (chỉ một số user có đánh giá)
 INSERT INTO `rate_res` (`user_id`, `res_id`, `amount`, `date_rate`) 
@@ -226,3 +261,38 @@ VALUES
 ('Trứng muối', 7000, 14),
 ('Bánh mì giòn', 3000, 15),
 ('Ngò rí', 2000, 15);
+
+
+-- Bài tập về nhà --
+-- Câu 1: Tìm 5 người đã like nhà hàng nhiều nhất.
+SELECT `user`.`full_name`, COUNT(`like_res`.`like_id`) AS `num_likes`
+FROM `user`
+JOIN `like_res` ON `like_res`.`user_id` = `user`.`user_id`
+GROUP BY `user`.`user_id`, `user`.`full_name`
+ORDER BY num_likes DESC
+LIMIT 5;
+
+-- Câu 2: Tìm 2 nhà hàng có lượt like nhiều nhất.
+SELECT `restaurant`.`res_name`, COUNT(`like_res`.`like_id`) AS `num_likes`
+FROM `restaurant`
+JOIN `like_res` ON `like_res`.`res_id` = `restaurant`.`res_id`
+GROUP BY `restaurant`.`res_id`, `restaurant`.`res_name`
+ORDER BY num_likes DESC
+LIMIT 2;
+
+-- Câu 3: Tìm người đã đặt hàng nhiều nhất.
+SELECT `user`.`user_id`, `user`.`full_name`, COUNT(`user`.`user_id`) AS `num_orders` FROM `user`
+JOIN `order` ON `user`.`user_id` = `order`.`user_id`
+GROUP BY `user_id`
+ORDER BY `num_orders` DESC;
+
+-- Câu 4: Tìm người dùng không hoạt động trong hệ thống
+-- (không đặt hàng, không like, không đánh giá nhà hàng)
+SELECT * FROM `user`
+LEFT JOIN `like_res` ON `like_res`.`user_id` = `user`.`user_id`
+LEFT JOIN `order` ON `order`.`user_id` = `user`.`user_id`
+LEFT JOIN `rate_res` ON `rate_res`.`user_id` = `user`.`user_id`
+WHERE `order`.`user_id` IS NULL
+AND `like_res`.`user_id` IS NULL
+AND `rate_res`.`user_id` IS NULL;
+
