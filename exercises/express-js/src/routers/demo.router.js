@@ -13,7 +13,7 @@ const demoRouter = express.Router();
 // resquest: The request object containing information about the HTTP request
 // response: The response object used to send a response back to the client
 // next: The next middleware function in the stack
-demoRouter.get('/check-server', demoController.checkServer);
+demoRouter.get('/check-server', demoController.service);
 
 // ví dụ trong postman:
 // GET http://localhost:3069/query?email=tu@email.com&name=tu
@@ -23,7 +23,7 @@ demoRouter.get('/check-server', demoController.checkServer);
  * - thường dùng cho: phân trang, lọc dữ liệu, tìm kiếm
  * - tránh: thiế kế nhận qua body vì FE (axios) chặn gủiw body với GET
  */
-demoRouter.get('/query', demoController.checkQuery);
+demoRouter.get('/query', demoController.query);
 
 /**
  * Path parameters
@@ -31,7 +31,7 @@ demoRouter.get('/query', demoController.checkQuery);
  * - thường dùng: (lấy, xoá, cập nhật) một phần tử cụ thể thông qua id
  * - id : nếu là số, sẽ là chuỗi số (sẽ luôn luôn là CHUỖI)
  */
-demoRouter.put('/path/:id', demoController.checkPath);
+demoRouter.put('/path/:id', demoController.path);
 
 /**
  * Headers
@@ -43,6 +43,6 @@ demoRouter.delete('/delete', demoController.delete);
 /**
  * Body
  */
-demoRouter.post('/body', demoController.postBody);
+demoRouter.post('/body', demoController.body);
 
 export default demoRouter;
