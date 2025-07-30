@@ -1,4 +1,5 @@
 import express from 'express';
+import demoController from '../controllers/demo.controller';
 
 const demoRouter = express.Router();
 
@@ -12,9 +13,7 @@ const demoRouter = express.Router();
 // resquest: The request object containing information about the HTTP request
 // response: The response object used to send a response back to the client
 // next: The next middleware function in the stack
-demoRouter.get('/login', (request, response, next) => {
-  response.json('hello world');
-});
+demoRouter.get('/check-server', demoController.checkServer);
 
 // ví dụ trong postman:
 // GET http://localhost:3069/query?email=tu@email.com&name=tu
@@ -24,14 +23,7 @@ demoRouter.get('/login', (request, response, next) => {
  * - thường dùng cho: phân trang, lọc dữ liệu, tìm kiếm
  * - tránh: thiế kế nhận qua body vì FE (axios) chặn gủiw body với GET
  */
-demoRouter.get('/query', (request, response, next) => {
-  const query = request.query;
-
-  response.json({
-    message: 'Query received',
-    query: query,
-  });
-});
+demoRouter.get('/query', demoController.checkQuery);
 
 /**
  * Path parameters
@@ -39,45 +31,18 @@ demoRouter.get('/query', (request, response, next) => {
  * - thường dùng: (lấy, xoá, cập nhật) một phần tử cụ thể thông qua id
  * - id : nếu là số, sẽ là chuỗi số (sẽ luôn luôn là CHUỖI)
  */
-demoRouter.put('/path/:id', (request, response, next) => {
-  const param = request.params;
-
-  console.log('Path parameter:', param);
-
-  // Thực hiện cập nhật dữ liệu
-  response.json({
-    message: 'Data updated successfully',
-    data: null,
-  });
-});
+demoRouter.put('/path/:id', demoController.checkPath);
 
 /**
  * Headers
  * Thường dùng: xác thực token (authentization), meta dât, x-api-key
  *
  */
-demoRouter.delete('/delete', (request, response, next) => {
-  const headers = request.headers;
-
-  console.log('Headers:', headers);
-
-  // Thực hiện xóa dữ liệu
-  response.json({
-    message: 'Data deleted successfully',
-    data: headers,
-  });
-});
+demoRouter.delete('/delete', demoController.delete);
 
 /**
  * Body
  */
-demoRouter.post('/body', (request, response, next) => {
-  const body = request.body;
-
-  response.json({
-    message: 'Body received',
-    body: body,
-  });
-});
+demoRouter.post('/body', demoController.postBody);
 
 export default demoRouter;
