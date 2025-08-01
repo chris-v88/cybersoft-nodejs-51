@@ -1,31 +1,31 @@
 import demoService from '../services/demo.service';
 
 const demoController = {
-  service: (request, response, next) => {
-    const result = demoService.service();
+  service: async (request, response, next) => {
+    const result = await demoService.service();
     response.json(result);
   },
-  query: (request, response, next) => {
-    const query = request.query;
+  query: async (request, response, next) => {
+    const query = await demoService.query(request);
 
-    response.json(demoService.query(query));
+    response.json(query);
   },
-  path: (request, response, next) => {
-    const param = request.params;
+  path: async (request, response, next) => {
+    const param = await demoService.path(request.params);
 
     // Thực hiện cập nhật dữ liệu
     response.json();
   },
-  delete: (request, response, next) => {
-    const headers = request.headers;
+  delete: async (request, response, next) => {
+    const headers = await demoService.delete(request.headers);
 
     // Thực hiện xóa dữ liệu
-    response.json(demoService.delete(headers));
+    response.json();
   },
-  body: (request, response, next) => {
-    const body = request.body;
+  body: async (request, response, next) => {
+    const body = await demoService.body(request.body);
 
-    response.json(demoService.body(body));
+    response.json(body);
   },
 };
 
