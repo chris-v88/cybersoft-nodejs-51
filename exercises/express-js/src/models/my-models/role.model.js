@@ -64,7 +64,7 @@ export default Role;
 // DATA FIRST: đi tạo DB trước, rồi mới kéo vào. ode
 // DB => Code | dùng thư viện sequelize-auto để kéo voà code
 
-// sequelize-auto -h -d <database> -u <user> -p <port> --dialect [dialect] -c [/path/to/config.json] -o [path/to/model] -t <table_name>
+// sequelize-auto -h -d <database> -u <user> -p <port> --dialect [dialect] -c [/path/to/config.json] -o [path/to/model] -t <table_name> -l <language> -a <additional_options>
 // <host> : localhost | 127.0.0.1
 // <database> : db_cyber_community
 // <user> : root
@@ -73,5 +73,7 @@ export default Role;
 // dialect : mysql | mariadb | postgres | mssql hệ cơ sở dữ liệu
 // -c [/path/to/config.json] : đường dẫn đến file config.json, k có xài nên bỏ
 // <table_name> : chỉ định cụ thể 1 table muốn kéo vào, nếu muốn kéo vào hết thì bỏ thông số này
+// <language> : js | ts, nếu không có thì mặc định là js, chọn esm để mặc định syntax là import/export
+// <additional_options> : các tùy chọn bổ sung, ví dụ như --useDefineForClassFields để sử dụng cú pháp define cho class fields trong TypeScript
 
-// sequelize-auto -h localhost -d db_cyber_community -u root -x 1234 -p 3307 --dialect mysql -o exercises/express-js/src/models/sequelize-auto -t <table_name>
+// sequelize-auto -h localhost -d db_cyber_community -u root -x 1234 -p 3307 --dialect mysql -o src/models/sequelize-auto -l esm
