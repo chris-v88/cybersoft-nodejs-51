@@ -19,20 +19,28 @@ demoRouter.get(
   '/check-server',
   (req, res, next) => {
     console.log('Middleware 1 check-server executed');
+
+    req.payload = 'Middleware 1 executed';
     next();
   },
   (req, res, next) => {
     console.log('Middleware 2 check-server executed');
     // validate email
-    if (!req?.body?.email) {
-      return res.status(400).json('Vui lòng gửi email trong request này');
-    }
-    next();
+    console.log('Email:', req?.payload);
+    // if (!req?.body?.email) {
+    //   return res.status(400).json('Vui lòng gửi email trong request này');
+    // }
+    next(1);
   },
   (req, res, next) => {
     console.log('Middleware 3 check-server executed');
     next();
   },
+  (err, req, res, next) => {
+    console.error('Error in middleware:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  },
+  // Call the service method from the demoController
   demoController.service
 );
 
