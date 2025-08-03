@@ -76,4 +76,4 @@ export default Role;
 // <language> : js | ts, nếu không có thì mặc định là js, chọn esm để mặc định syntax là import/export
 // <additional_options> : các tùy chọn bổ sung, ví dụ như --useDefineForClassFields để sử dụng cú pháp define cho class fields trong TypeScript
 
-// sequelize-auto -h localhost -d db_cyber_community -u root -x 1234 -p 3307 --dialect mysql -o src/models/sequelize-auto -l esm
+// sequelize-auto -h localhost -d db_cyber_community -u root -x 1234 -p 3307 --dialect mysql -o src/models/sequelize-auto -l esm -a src/models/additional.json

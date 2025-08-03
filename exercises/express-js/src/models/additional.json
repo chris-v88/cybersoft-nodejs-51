@@ -1,0 +1,5 @@
+{
+  "timestamps": false,
+  "paranoid": false,
+  "freeTableName": true
+}

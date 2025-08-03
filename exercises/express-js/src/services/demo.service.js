@@ -1,5 +1,7 @@
 import pool from '../common/mysql2/init.mysql2';
 import sequelize from '../common/sequelize/init.sequelize.js';
+import models from '../models/app.model.js';
+import prisma from '../common/prisma/init.prisma.js';
 
 const demoService = {
   service: () => {
@@ -9,8 +11,8 @@ const demoService = {
     const query = req.query;
 
     // MYSQL 2
-    const [rows, fields] = await pool.query('SELECT * FROM `Roles`');
-    console.log('Query parameters:', { rows, fields });
+    const [dataMySQL, fields] = await pool.query('SELECT * FROM `Roles`');
+    console.log('Query parameters:', { dataMySQL, fields });
 
     // SEQUELIZE
     // tương tự cái MYSQL trên trê
@@ -22,6 +24,12 @@ const demoService = {
     //   .catch((error) => {
     //     console.error('Sequelize query error:', error);
     //   });
+
+    // Role
+    const dataSequelize = await models.Roles.findAll();
+
+    // Prisma
+    const dataPrisma = await prisma.roles.findMany();
 
     return {
       message: 'Data updated successfully',

@@ -31,12 +31,26 @@ export default class ChatGroups extends Model {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: 0
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     }
   }, {
     sequelize,
     tableName: 'ChatGroups',
-    timestamps: true,
-    paranoid: true,
+    timestamps: false,
+    freeTableName: true,
     indexes: [
       {
         name: "PRIMARY",
