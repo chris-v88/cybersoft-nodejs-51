@@ -1,14 +1,25 @@
 import demoService from '../services/demo.service';
+import {
+  responseSuccess,
+  responseError,
+} from '../common/helpers/response.helpers';
 
 const demoController = {
   service: async (request, response, next) => {
     const result = await demoService.service();
-    response.json(result);
+    const resData = responseSuccess(result, 'Service is running successfully');
+    response.json(resData);
   },
   query: async (request, response, next) => {
-    const query = await demoService.query(request);
-
-    response.json(query);
+    try {
+      const result = await demoService.query(request);
+      const responseData = responseSuccess(result, 'Xử lý dữ liệu thành công');
+      response.json(responseData);
+    } catch (error) {
+      console.error('Error in query:', error);
+      const responseData = responseError(error, 'Xử lý dữ liệu thất bại');
+      response.status(500).json(responseData);
+    }
   },
   path: async (request, response, next) => {
     const param = await demoService.path(request.params);

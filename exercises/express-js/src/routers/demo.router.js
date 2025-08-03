@@ -13,7 +13,28 @@ const demoRouter = express.Router();
 // resquest: The request object containing information about the HTTP request
 // response: The response object used to send a response back to the client
 // next: The next middleware function in the stack
-demoRouter.get('/check-server', demoController.service);
+
+// demoRouter.get('/check-server', demoController.service);
+demoRouter.get(
+  '/check-server',
+  (req, res, next) => {
+    console.log('Middleware 1 check-server executed');
+    next();
+  },
+  (req, res, next) => {
+    console.log('Middleware 2 check-server executed');
+    // validate email
+    if (!req?.body?.email) {
+      return res.status(400).json('Vui lòng gửi email trong request này');
+    }
+    next();
+  },
+  (req, res, next) => {
+    console.log('Middleware 3 check-server executed');
+    next();
+  },
+  demoController.service
+);
 
 // ví dụ trong postman:
 // GET http://localhost:3069/query?email=tu@email.com&name=tu
