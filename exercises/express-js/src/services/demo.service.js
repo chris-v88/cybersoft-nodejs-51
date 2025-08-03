@@ -1,4 +1,5 @@
 import pool from '../common/mysql2/init.mysql2';
+import sequelize from '../common/sequelize/init.sequelize.js';
 
 const demoService = {
   service: () => {
@@ -7,8 +8,21 @@ const demoService = {
   query: async (req) => {
     const query = req.query;
 
+    // MYSQL 2
     const [rows, fields] = await pool.query('SELECT * FROM `Roles`');
     console.log('Query parameters:', { rows, fields });
+
+    // SEQUELIZE
+    // tương tự cái MYSQL trên trê
+    // sequelize
+    //   .query('SELECT * FROM `Roles`', { type: sequelize.QueryTypes.SELECT })
+    //   .then((results) => {
+    //     console.log('Sequelize query results:', results);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Sequelize query error:', error);
+    //   });
+
     return {
       message: 'Data updated successfully',
       data: query,

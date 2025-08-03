@@ -1,8 +1,10 @@
 import mysql from 'mysql2/promise';
 
+import { DATABASE_URL } from '../constants/app.constant';
+
 // Create the connection pool. The pool-specific settings are the defaults
 const pool = mysql.createPool({
-  uri: 'mysql://root:1234@localhost:3307/db_cyber_community',
+  uri: DATABASE_URL,
   waitForConnections: true,
   connectionLimit: 10,
   maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`
