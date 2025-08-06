@@ -7,11 +7,17 @@ export const responseSuccess = (data, message = 'Success', code = 200) => {
   };
 };
 
-export const responseError = (error, message = 'Error', code = 500) => {
+export const responseError = (
+  error,
+  message = 'Internal Server Error',
+  code = 500,
+  stack = null
+) => {
   return {
     status: 'error',
     statusCode: code,
     message,
     error: error instanceof Error ? error.message : error,
+    stack,
   };
 };

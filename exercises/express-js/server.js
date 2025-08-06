@@ -6,6 +6,15 @@ const app = express();
 
 // giúp body nhận dc dữ liệu từ client gửi lên
 app.use(express.json()); // Placeholder for middleware
+app.use('/api', rootRouter);
+
+app.use((err, req, res, next) => {
+  console.error('Error in middleware:', err);
+  // res.status(500).json({ error: 'Internal Server Error' });
+  const resData = responseError(err, err?.message, err?.code, err?.stack);
+
+  resData.status(resData.statusCode).json(resData);
+});
 
 app.use('/api', rootRouter);
 

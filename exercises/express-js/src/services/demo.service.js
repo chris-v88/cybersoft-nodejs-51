@@ -31,8 +31,19 @@ const demoService = {
     // Prisma
     const dataPrisma = await prisma.roles.findMany();
 
+    // lỗi kiểm soát được
+    // const passDB = '123';
+    // const passUser = '111';
+    // if (passDB !== passUser) {
+    //   // throw new Error('Mật khẩu không khớp');
+    //   throw new BadResquestException('Mật khẩu không khớp');
+    // }
+
     return {
       message: 'Data updated successfully',
+      mysql2: dataMySQL,
+      sequelize: dataSequelize,
+      prisma: dataPrisma,
       data: query,
     };
   },

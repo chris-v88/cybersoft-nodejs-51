@@ -16,4 +16,12 @@
  *
  * dotenv: để đọc biến môi trường từ file .env vào process.env
  *
+ * sequelize: ORM để tương tác với DB, hỗ trợ nhiều loại DB khác nhau
+ *            - npx sequelize init: khởi tạo 1 lần
+ *            - npx sequelize db:migrate: chạy các migration để tạo bảng trong DB
+ *            - npx sequelize db:seed: chèn dữ liệu mẫu vào DB
+ *
+ * sequelize-auto: để tự động sinh ra các model từ DB hiện tại
+ *                - npx sequelize-auto -o "./src/models" -d database_name -h localhost -u username -p 3306 -x password --dialect mysql
+ *
  */

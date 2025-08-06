@@ -30,18 +30,14 @@ demoRouter.get(
     // if (!req?.body?.email) {
     //   return res.status(400).json('Vui lòng gửi email trong request này');
     // }
-    next(1);
+    next();
   },
   (req, res, next) => {
     console.log('Middleware 3 check-server executed');
     next();
   },
-  (err, req, res, next) => {
-    console.error('Error in middleware:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
-  },
   // Call the service method from the demoController
-  demoController.service
+  demoController.checkServer
 );
 
 // ví dụ trong postman:
