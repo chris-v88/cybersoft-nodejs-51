@@ -27,4 +27,6 @@
  * cors: cho phép FE nào sử dụng (API) lấy dữ liệu từ BE
  *      - middleware để xử lý CORS (Cross-Origin Resource Sharing)
  *      - app.use(cors());
+ *
+ * bcrypt: mã hoá mật khẩu (bắt buộc phải sử dụng khi lưu mật khẩu)
  */
