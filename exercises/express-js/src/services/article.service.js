@@ -1,9 +1,40 @@
+import prisma from '../common/prisma/init.prisma';
+
 export const articleService = {
   create: async (req) => {
     return `created`;
   },
   findAll: async (req) => {
-    return `all articles`;
+    let { page, pageSize } = req.query;
+    page = Number(page) > 0 ? Number(page) : 1;
+    pageSize = Number(pageSize) > 0 ? Number(pageSize) : 1;
+
+    // debug
+    console.log({ page, pageSize });
+
+    // index (OFFSET) = ( page - 1 ) * pageSize
+    const index = (page - 1) * pageSize;
+
+    const articlesPromise = prisma.articles.findMany({
+      skip: index, // SQL: OFFSET
+      take: pageSize, // SQL: LIMIT
+    });
+
+    // đếm số lượng row trong table
+    const totalItemPromise = prisma.articles.count(); // SQL: COUNT
+
+    const [articles, totalItem] = await Promise.all([
+      articlesPromise,
+      totalItemPromise,
+    ]);
+
+    const totalPage = totalItem / pageSize;
+
+    return {
+      totalItem: totalItem,
+      totalPage: Math.ceil(totalPage),
+      items: articles,
+    };
   },
   findOne: async (req) => {
     return `one article - ${req.params.id}`;

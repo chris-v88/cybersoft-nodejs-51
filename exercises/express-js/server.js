@@ -1,13 +1,24 @@
 import express from 'express';
 import rootRouter from './src/routers/root.router';
+import cors from 'cors';
+
 import { responseError } from './src/common/helpers/response.helpers';
+import { appError } from './src/common/app-error/app-error.error';
 
 const app = express();
 // express.json(); // Middleware to parse JSON bodies
 
 // giúp body nhận dc dữ liệu từ client gửi lên
 app.use(express.json()); // Placeholder for middleware
+
+// luôn để cors trước router api
+app.use(cors());
+
+// router api
 app.use('/api', rootRouter);
+
+// xử lý lỗi chung cho toàn bộ ứng dụng
+app.use(appError);
 
 app.use((err, req, res, next) => {
   console.error('Error in middleware:', err);

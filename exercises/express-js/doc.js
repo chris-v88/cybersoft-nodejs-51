@@ -24,4 +24,7 @@
  * sequelize-auto: để tự động sinh ra các model từ DB hiện tại
  *                - npx sequelize-auto -o "./src/models" -d database_name -h localhost -u username -p 3306 -x password --dialect mysql
  *
+ * cors: cho phép FE nào sử dụng (API) lấy dữ liệu từ BE
+ *      - middleware để xử lý CORS (Cross-Origin Resource Sharing)
+ *      - app.use(cors());
  */

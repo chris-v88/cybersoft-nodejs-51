@@ -7,7 +7,7 @@ import { responseError } from '../helpers/response.helpers';
  * @param {*} res - The response object.
  * @param {*} next - The next middleware function.
  */
-const appError = (err, req, res, next) => {
+export const appError = (err, req, res, next) => {
   console.log('middleware appError executed');
 
   const resData = responseError(err, err?.message, err?.code);
