@@ -5,19 +5,39 @@ export const articleService = {
     return `created`;
   },
   findAll: async (req) => {
-    let { page, pageSize } = req.query;
+    let { page, pageSize, filters } = req.query;
     page = Number(page) > 0 ? Number(page) : 1;
     pageSize = Number(pageSize) > 0 ? Number(pageSize) : 1;
 
-    // debug
-    console.log({ page, pageSize });
+    // Parse filters safely
+    try {
+      filters = filters ? JSON.parse(filters) : {};
+    } catch (error) {
+      filters = {};
+    }
 
+    Object.entries(filters).forEach(([key, value]) => {
+      if (!value) {
+        delete filters['id'];
+      }
+
+      if (typeof value === 'string') {
+        filters[key] = {
+          contains: value, // SQL: CONTAINS
+          // mode: 'insensitive',
+        };
+      }
+    });
     // index (OFFSET) = ( page - 1 ) * pageSize
     const index = (page - 1) * pageSize;
+
+    // debug
+    console.log({ page, pageSize, index, filters });
 
     const articlesPromise = prisma.articles.findMany({
       skip: index, // SQL: OFFSET
       take: pageSize, // SQL: LIMIT
+      where: filters,
     });
 
     // đếm số lượng row trong table

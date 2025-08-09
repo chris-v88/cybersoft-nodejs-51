@@ -12,7 +12,11 @@ const app = express();
 app.use(express.json()); // Placeholder for middleware
 
 // luôn để cors trước router api
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:3000'],
+  })
+);
 
 // router api
 app.use('/api', rootRouter);
