@@ -19,6 +19,7 @@ export const articleService = {
     Object.entries(filters).forEach(([key, value]) => {
       if (!value) {
         delete filters['id'];
+        return;
       }
 
       if (typeof value === 'string') {
@@ -27,6 +28,8 @@ export const articleService = {
           // mode: 'insensitive',
         };
       }
+
+      // TODO: xử lý ngày tháng
     });
     // index (OFFSET) = ( page - 1 ) * pageSize
     const index = (page - 1) * pageSize;
