@@ -1,5 +1,6 @@
 import express from 'express';
 import rootRouter from './src/routers/root.router';
+import { responseError } from './src/common/helpers/response.helpers';
 
 const app = express();
 // express.json(); // Middleware to parse JSON bodies
@@ -13,10 +14,8 @@ app.use((err, req, res, next) => {
   // res.status(500).json({ error: 'Internal Server Error' });
   const resData = responseError(err, err?.message, err?.code, err?.stack);
 
-  resData.status(resData.statusCode).json(resData);
+  res.status(resData.statusCode).json(resData);
 });
-
-app.use('/api', rootRouter);
 
 const port = 3069;
 /**
