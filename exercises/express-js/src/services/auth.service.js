@@ -48,7 +48,26 @@ export const authService = {
 
     return newUser;
   },
+  
   login: async (req) => {
+    const { email, password } = req.body;
+
+    const user = await prisma.users.findUnique({
+      where: {
+        email: email,
+      }
+    })
+
+    if (!user) throw new BadResquestException("User does not exist. Can't login");
+
+    // Nếu code chạy được tới đây => đảm bảo có user
+    // user.password
+    const isPasswordValid = bcrypt.compareSync(password, user.password); // true | false
+    if(!isPasswordValid) throw new BadResquestException("Password is not correct. Can't login");
+
+    console.log('🚀 ~ email:', email);
+    console.log('🚀 ~ password:', password);
+
     return `logged in auth - ${req.body.username}`;
   },
 };
