@@ -41,3 +41,12 @@ const port = 3069;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+
+/**
+ * tự động lưu kết quả vào biến môi trường trong postman
+ * để mỗi lần lấy token mới không cần thao tác thử công nữa
+ */
+// const data = pm.response.json();
+// pm.environment.set("accessToken", data.accessToken);
+// pm.environment.set("refreshToken", data.refreshToken);
