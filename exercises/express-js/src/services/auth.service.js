@@ -2,6 +2,7 @@ import prisma from '../common/prisma/init.prisma';
 import * as bcrypt from 'bcrypt';
 
 import { BadResquestException } from '../common/helpers/exception.helper';
+import { tokenService } from './token.service';
 
 export const authService = {
   create: async (req) => {
@@ -67,15 +68,11 @@ export const authService = {
     
     // nếu code chạy dc tới đây => ng dừng hợp lệ
     // trả lại token
-    const tokens = {
-      accessToken: '...',
-      refreshToken: '...',
-    }
+    const tokens = tokenService.createTokens(user.id);
+    return tokens;
+  },
 
-
-    console.log('🚀 ~ email:', email);
-    console.log('🚀 ~ password:', password);
-
-    return `logged in auth - ${req.body.username}`;
+  getInfo: async (req) => {
+    return 'get user info successfully';
   },
 };

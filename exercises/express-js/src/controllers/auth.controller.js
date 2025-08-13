@@ -43,4 +43,10 @@ export const authController = {
     const response = responseSuccess(result, 'Login auth successfully');
     res.status(response.statusCode).json(response);
   },
+
+  getInfo: async (req, res) => {
+    const result = await authService.getInfo(req);
+    const response = responseSuccess(result, 'Get user info successfully');
+    res.status(response.statusCode).json(response);
+  },
 };

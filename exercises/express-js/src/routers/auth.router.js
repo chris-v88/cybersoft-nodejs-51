@@ -5,11 +5,13 @@ const authRouter = express.Router();
 
 authRouter.post('/', authController.create);
 authRouter.get('/', authController.findAll);
-authRouter.get('/:id', authController.findOne);
-authRouter.patch('/:id', authController.update);
-authRouter.delete('/:id', authController.remove);
 
 authRouter.post('/register', authController.register);
 authRouter.post('/login', authController.login);
+authRouter.get('/get-info', authController.getInfo);
+
+authRouter.get('/:id', authController.findOne);
+authRouter.patch('/:id', authController.update);
+authRouter.delete('/:id', authController.remove);
 
 export default authRouter;
