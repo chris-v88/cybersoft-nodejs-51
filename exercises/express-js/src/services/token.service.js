@@ -23,8 +23,13 @@ export const tokenService = {
     };
    },
 
-   verifyAccessToken: (accessToken) => {
-    const decodedToken = jwt.verify(accessToken, ACCESS_TOKEN_SECRET);
-    return decodedToken;
+   verifyAccessToken: (accessToken, option) => {
+    const decodedAccessToken = jwt.verify(accessToken, ACCESS_TOKEN_SECRET, option);
+    return decodedAccessToken;
+   },
+
+   verifyRefreshToken: (refreshToken, option) => {
+    const decodedRefreshToken = jwt.verify(refreshToken, ACCESS_REFRESH_SECRET, option);
+    return decodedRefreshToken;
    }
 };

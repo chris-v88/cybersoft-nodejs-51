@@ -10,6 +10,7 @@ authRouter.get('/', authController.findAll);
 authRouter.post('/register', authController.register);
 authRouter.post('/login', authController.login);
 authRouter.get('/get-info', protect, authController.getInfo);
+authRouter.post('/refresh-token', authController.refreshToken);
 
 authRouter.get('/:id', authController.findOne);
 authRouter.patch('/:id', authController.update);

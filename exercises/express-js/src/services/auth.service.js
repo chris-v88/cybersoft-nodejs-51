@@ -1,7 +1,7 @@
 import prisma from '../common/prisma/init.prisma';
 import * as bcrypt from 'bcrypt';
 
-import { BadResquestException } from '../common/helpers/exception.helper';
+import { BadResquestException, UnauthorizedException } from '../common/helpers/exception.helper';
 import { tokenService } from './token.service';
 
 export const authService = {
@@ -73,6 +73,29 @@ export const authService = {
   },
 
   getInfo: async (req) => {
-    return 'get user info successfully';
+    delete req.user.password; // xoa password ra khoi du lieu tra ve
+    return req.user;
+  },
+
+  refreshToken: async (req) => {
+    const { accessToken, refreshToken } = req.body;
+    console.log(`🚀 ~ accessToken, refreshToken:`, accessToken, refreshToken);
+
+    // verify accesToken (trưởng hợp hết hạn) bỏ kiểm tra hết hạn
+    const decodedAccessToken = tokenService.verifyAccessToken(accessToken, {ignoreExpiration: true });
+    const decodedRefreshToken = tokenService.verifyRefreshToken(refreshToken);
+
+    if (decodedAccessToken.userId !== decodedRefreshToken.userId) throw new UnauthorizedException("Token Invalid");
+
+    const user = await prisma.users.findUnique({
+      where: {
+        id: decodedRefreshToken.userId,
+      }
+    });
+
+    if (!user) throw new UnauthorizedException("User invalid");
+
+    const tokens = tokenService.createTokens(user.id);
+    return tokens;
   },
 };

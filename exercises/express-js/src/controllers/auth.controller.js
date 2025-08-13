@@ -49,4 +49,10 @@ export const authController = {
     const response = responseSuccess(result, 'Get user info successfully');
     res.status(response.statusCode).json(response);
   },
+
+  refreshToken: async (req, res) => {
+    const result = await authService.refreshToken(req);
+    const response = responseSuccess(result, 'Refresh token successfully');
+    res.status(response.statusCode).json(response);
+  },
 };
