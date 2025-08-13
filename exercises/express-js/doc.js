@@ -29,4 +29,6 @@
  *      - app.use(cors());
  *
  * bcrypt: mã hoá mật khẩu (bắt buộc phải sử dụng khi lưu mật khẩu)
+ * 
+ * jsonwebtoken: tạo và xác thực token (JWT)
  */

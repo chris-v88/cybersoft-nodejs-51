@@ -27,7 +27,7 @@ export const authService = {
         email: email,
       },
     });
-    console.log('🚀 ~ user:', user);
+    // console.log('🚀 ~ user:', user);
 
     if (user) {
       throw new BadResquestException(
@@ -44,7 +44,7 @@ export const authService = {
         fullName,
       },
     });
-    console.log('🚀 ~ newUser:', newUser);
+    // console.log('🚀 ~ newUser:', newUser);
 
     return newUser;
   },
@@ -64,6 +64,14 @@ export const authService = {
     // user.password
     const isPasswordValid = bcrypt.compareSync(password, user.password); // true | false
     if(!isPasswordValid) throw new BadResquestException("Password is not correct. Can't login");
+    
+    // nếu code chạy dc tới đây => ng dừng hợp lệ
+    // trả lại token
+    const tokens = {
+      accessToken: '...',
+      refreshToken: '...',
+    }
+
 
     console.log('🚀 ~ email:', email);
     console.log('🚀 ~ password:', password);
