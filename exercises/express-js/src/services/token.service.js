@@ -12,4 +12,9 @@ export const tokenService = {
       refreshToken:  '',
     };
    },
+
+   verifyAccessToken: (accessToken) => {
+    const decodedToken = jwt.verify(accessToken, ACCESS_TOKEN_SECRET);
+    return decodedToken;
+   }
 };

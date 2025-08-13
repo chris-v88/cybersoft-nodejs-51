@@ -1,3 +1,4 @@
+import { tokenService } from "../../services/token.service";
 import { BadResquestException, UnauthorizedException } from "../helpers/exception.helper";
 
 export const protect = (req, res, next) => {
@@ -12,6 +13,9 @@ export const protect = (req, res, next) => {
 
   if (type !== 'Bearer') throw new UnauthorizedException('Invalid token type');
   if (!accessToken) throw new UnauthorizedException('Token not found');
+
+  const decodedToken = tokenService.verifyAccessToken(accessToken);
+  // if (!decodedToken) throw new UnauthorizedException('Invalid token');
 
   console.log('Protect middleware', {authorization, type, accessToken});
 
