@@ -1,7 +1,8 @@
 import { tokenService } from "../../services/token.service";
-import { BadResquestException, UnauthorizedException } from "../helpers/exception.helper";
+import { UnauthorizedException } from "../helpers/exception.helper";
+import prisma from "../prisma/init.prisma";
 
-export const protect = (req, res, next) => {
+export const protect = async (req, res, next) => {
   const authorization = req.headers.authorization;
 
   // 401 : log out người dùng
@@ -14,10 +15,17 @@ export const protect = (req, res, next) => {
   if (type !== 'Bearer') throw new UnauthorizedException('Invalid token type');
   if (!accessToken) throw new UnauthorizedException('Token not found');
 
-  const decodedToken = tokenService.verifyAccessToken(accessToken);
+  const { userId } = tokenService.verifyAccessToken(accessToken);
   // if (!decodedToken) throw new UnauthorizedException('Invalid token');
 
-  console.log('Protect middleware', {authorization, type, accessToken});
+  const user = await prisma.users.findUnique({
+    where: {
+      id: userId,
+    }
+  })
+
+
+  console.log('Protect middleware', {authorization, type, accessToken, userId, user });
 
   next();
 }

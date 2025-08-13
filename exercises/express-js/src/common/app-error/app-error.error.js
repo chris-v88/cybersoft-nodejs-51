@@ -16,6 +16,7 @@ export const appError = (err, req, res, next) => {
   // 403 - api refresh-token
   if (err instanceof jwt.JsonWebTokenError) err.code = statusCodes.UNAUTHORIZED;
   if (err instanceof jwt.TokenExpiredError) err.code = statusCodes.FORBIDDEN;
+  
 
   const resData = responseError(err, err?.message, err?.code);
   res.status(resData.statusCode).json(resData);
