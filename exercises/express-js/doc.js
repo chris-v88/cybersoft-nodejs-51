@@ -31,4 +31,8 @@
  * bcrypt: mã hoá mật khẩu (bắt buộc phải sử dụng khi lưu mật khẩu)
  * 
  * jsonwebtoken: tạo và xác thực token (JWT)
+ * 
+ * passport-google-oauth20: chiến lược (logic) cho flow đăng nhập bằng google
+ * 
+ * passport: thư viện cha sẽ luôn cần cài nếu muốn sử dụng passport-google-oauth20
  */

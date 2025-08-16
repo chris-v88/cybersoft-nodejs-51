@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import { responseError } from './src/common/helpers/response.helpers';
 import { appError } from './src/common/app-error/app-error.error';
+import { initGoogleAuth20 } from './src/common/passports/google-auth20.passport';
 
 const app = express();
 // express.json(); // Middleware to parse JSON bodies
@@ -17,6 +18,9 @@ app.use(
     origin: ['http://localhost:3000'],
   })
 );
+
+// luôn luôn để trước router
+initGoogleAuth20();
 
 // router api
 app.use('/api', rootRouter);
