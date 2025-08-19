@@ -98,4 +98,30 @@ export const authService = {
     const tokens = tokenService.createTokens(user.id);
     return tokens;
   },
+
+  googleAuth20: (req, res) => {
+    try {
+      console.log('✅ Google authentication successful', req.user);  
+
+      if (!req.user || !req.user.accessToken || !req.user.refreshToken) {
+        console.error('❌ Missing tokens in req.user:', req.user);
+        // return res.redirect('http://localhost:3000/login?error=missing_tokens');
+
+        return 'http://localhost:3000/login?error=missing_tokens'; // trả về url redirect để controller xử lý
+      }
+      const { accessToken, refreshToken } = req.user;
+
+      const urlRedirect = `http://localhost:3000/login-callback?accessToken=${accessToken}&refreshToken=${refreshToken}`;
+      
+      // Successful authentication, redirect home.
+      // res.redirect(urlRedirect); // việc của controller làm
+
+      return urlRedirect; // trả về url redirect để controller xử lý
+    } catch (error) {
+      console.error('❌ Callback error:', error);
+      // res.redirect('http://localhost:3000/login?error=callback_failed');
+
+      return 'http://localhost:3000/login?error=callback_failed';
+    }
+  }
 };

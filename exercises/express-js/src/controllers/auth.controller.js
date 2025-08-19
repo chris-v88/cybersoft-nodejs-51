@@ -55,4 +55,11 @@ export const authController = {
     const response = responseSuccess(result, 'Refresh token successfully');
     res.status(response.statusCode).json(response);
   },
+
+  googleAuth20: async (req, res) => {
+    const result = await authService.googleAuth20(req);
+    res.redirect(result);
+    // const response = responseSuccess(result, 'Google authentication successful');
+    // res.status(response.statusCode).json(response);
+  },
 };

@@ -46,24 +46,7 @@ authRouter.get(
     // },
     { failureRedirect: '/login', session: false }
   ),
-  (req, res) => {
-    try {
-      console.log('✅ Google authentication successful', req.user);
-
-      if (!req.user || !req.user.accessToken || !req.user.refreshToken) {
-        console.error('❌ Missing tokens in req.user:', req.user);
-        return res.redirect('http://localhost:3000/login?error=missing_tokens');
-      }
-      const { accessToken, refreshToken } = req.user;
-
-      const urlRedirect = `http://localhost:3000/login-callback?accessToken=${accessToken}&refreshToken=${refreshToken}`;
-      // Successful authentication, redirect home.
-      res.redirect(urlRedirect);
-    } catch (error) {
-      console.error('❌ Callback error:', error);
-      res.redirect('http://localhost:3000/login?error=callback_failed');
-    }
-  }
+  authController.googleAuth20 // controller xử lý sau khi xác thực thành công
 );
 
 authRouter.get('/:id', authController.findOne);
