@@ -1,17 +1,11 @@
 import demoService from '../services/demo.service';
-import {
-  responseSuccess,
-  responseError,
-} from '../common/helpers/response.helpers';
+import { responseSuccess, responseError } from '../common/helpers/response.helpers';
 
 const demoController = {
   checkServer: async (request, response, next) => {
     try {
       const result = await demoService.service();
-      const resData = responseSuccess(
-        result,
-        'Service is running successfully'
-      );
+      const resData = responseSuccess(result, 'Service is running successfully');
 
       response.json(resData);
     } catch (error) {

@@ -1,7 +1,4 @@
-import {
-  responseSuccess,
-  responseError,
-} from '../common/helpers/response.helpers';
+import { responseSuccess, responseError } from '../common/helpers/response.helpers';
 import { articleService } from '../services/article.service';
 
 export const articleController = {

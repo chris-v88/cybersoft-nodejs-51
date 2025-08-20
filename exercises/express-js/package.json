@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --import=extensionless/register server.js",
     "start": "node --import=extensionless/register server.js",
-    "prisma": "npx prisma db pull && npx prisma generate"
+    "prisma": "npx prisma db pull && npx prisma generate",
+    "format:fix": "prettier --write \"src/**/*.{js,ts,jsx,tsx,json,css,md}\" --ignore-path .prettierignore"
   },
   "author": "",
   "license": "ISC",
@@ -19,9 +20,11 @@
     "extensionless": "^1.9.9",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.14.3",
+    "nodemailer": "^7.0.5",
     "nodemon": "^3.1.10",
     "passport": "^0.7.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "prettier": "^3.6.2"
   },
   "devDependencies": {
     "cors": "^2.8.5",

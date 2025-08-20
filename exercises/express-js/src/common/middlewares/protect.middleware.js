@@ -1,6 +1,6 @@
-import { tokenService } from "../../services/token.service";
-import { UnauthorizedException } from "../helpers/exception.helper";
-import prisma from "../prisma/init.prisma";
+import { tokenService } from '../../services/token.service';
+import { UnauthorizedException } from '../helpers/exception.helper';
+import prisma from '../prisma/init.prisma';
 
 export const protect = async (req, res, next) => {
   const authorization = req.headers.authorization;
@@ -21,13 +21,13 @@ export const protect = async (req, res, next) => {
   const user = await prisma.users.findUnique({
     where: {
       id: userId,
-    }
-  })
+    },
+  });
 
   if (!user) throw new UnauthorizedException('User not found');
   req.user = user;
 
-  console.log('Protect middleware', {authorization, type, accessToken, userId, user });
+  console.log('Protect middleware', { authorization, type, accessToken, userId, user });
 
   next();
-}
+};

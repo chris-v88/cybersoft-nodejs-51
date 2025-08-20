@@ -35,4 +35,6 @@
  * passport-google-oauth20: chiến lược (logic) cho flow đăng nhập bằng google
  * 
  * passport: thư viện cha sẽ luôn cần cài nếu muốn sử dụng passport-google-oauth20
+ *
+ * nodemailer: thư viện để gửi email
  */

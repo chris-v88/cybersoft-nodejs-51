@@ -46,10 +46,7 @@ export const articleService = {
     // đếm số lượng row trong table
     const totalItemPromise = prisma.articles.count(); // SQL: COUNT
 
-    const [articles, totalItem] = await Promise.all([
-      articlesPromise,
-      totalItemPromise,
-    ]);
+    const [articles, totalItem] = await Promise.all([articlesPromise, totalItemPromise]);
 
     const totalPage = totalItem / pageSize;
 
