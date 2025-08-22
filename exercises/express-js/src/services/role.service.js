@@ -1,3 +1,5 @@
+import prisma from "../common/prisma/init.prisma";
+
 export const roleService = {
   create: async (req) => {
     return `This action create`;
@@ -36,23 +38,25 @@ export const roleService = {
     // debug
     console.log({ page, pageSize, index, filters });
 
-    const articlesPromise = prisma.articles.findMany({
+    const rolesPromise = prisma.roles.findMany({
       skip: index, // SQL: OFFSET
       take: pageSize, // SQL: LIMIT
       where: filters,
     });
 
     // đếm số lượng row trong table
-    const totalItemPromise = prisma.articles.count(); // SQL: COUNT
+    const totalItemPromise = prisma.roles.count(); // SQL: COUNT
 
-    const [articles, totalItem] = await Promise.all([articlesPromise, totalItemPromise]);
+    const [roles, totalItem] = await Promise.all([rolesPromise, totalItemPromise]);
 
     const totalPage = totalItem / pageSize;
 
     return {
+      page,
+      pageSize,
       totalItem: totalItem,
       totalPage: Math.ceil(totalPage),
-      items: articles,
+      items: roles || [],
     };
   },
 

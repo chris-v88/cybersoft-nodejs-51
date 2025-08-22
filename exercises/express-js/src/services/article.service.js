@@ -51,9 +51,11 @@ export const articleService = {
     const totalPage = totalItem / pageSize;
 
     return {
+      page,
+      pageSize,
       totalItem: totalItem,
       totalPage: Math.ceil(totalPage),
-      items: articles,
+      items: articles || [],
     };
   },
   findOne: async (req) => {
