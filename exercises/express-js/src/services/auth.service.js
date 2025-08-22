@@ -69,14 +69,15 @@ export const authService = {
     // trả lại token
     const tokens = tokenService.createTokens(user.id);
 
-    console.log({ email, password });
+    console.log('🔑 Login : ', { email, password });
 
-    try {
-      await sendMail(email);
-      console.log('📧 Login notification email sent to:', email);
-    } catch (emailError) {
-      console.error('📧 Failed to send login notification:', emailError);
-    }
+    // Comment out email sending temporarily
+    // try {
+    //   await sendMail(email);
+    //   console.log('📧 Login notification email sent to:', email);
+    // } catch (emailError) {
+    //   console.error('📧 Failed to send login notification:', emailError);
+    // }
 
     return tokens;
   },

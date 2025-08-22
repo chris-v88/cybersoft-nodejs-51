@@ -289,7 +289,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/vtu/Documents/CyberSoft/NodeJS/cybersoft-nodejs-51/exercises/express-js/generated/prisma",
+      "value": "/Users/vtu/Documents/CyberSoft/NodeJS/class-demo/cybersoft-nodejs-51/exercises/express-js/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -303,7 +303,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/vtu/Documents/CyberSoft/NodeJS/cybersoft-nodejs-51/exercises/express-js/prisma/schema.prisma",
+    "sourceFilePath": "/Users/vtu/Documents/CyberSoft/NodeJS/class-demo/cybersoft-nodejs-51/exercises/express-js/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

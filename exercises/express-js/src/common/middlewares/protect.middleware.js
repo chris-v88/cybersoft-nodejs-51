@@ -27,7 +27,7 @@ export const protect = async (req, res, next) => {
   if (!user) throw new UnauthorizedException('User not found');
   req.user = user;
 
-  console.log('Protect middleware', { authorization, type, accessToken, userId, user });
+  console.log('⚔️ Protect middleware', { authorization, type, accessToken, userId, user });
 
   next();
 };

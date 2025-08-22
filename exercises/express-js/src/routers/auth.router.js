@@ -3,6 +3,7 @@ import passport from 'passport';
 
 import { authController } from '../controllers/auth.controller';
 import { protect } from '../common/middlewares/protect.middleware';
+import { checkPermission } from '../common/middlewares/check-permission.middleware';
 
 const authRouter = express.Router();
 
@@ -11,7 +12,7 @@ authRouter.get('/', authController.findAll);
 
 authRouter.post('/register', authController.register);
 authRouter.post('/login', authController.login);
-authRouter.get('/get-info', protect, authController.getInfo);
+authRouter.get('/get-info', protect, checkPermission, authController.getInfo);
 authRouter.post('/refresh-token', authController.refreshToken);
 
 // FE sẽ gọi từ cái thanh địa chỉ của trình duyệt để kích hoạt gọi api GET tới: https://localhost:3069/api/auth/google
