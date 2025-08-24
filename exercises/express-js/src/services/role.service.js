@@ -61,7 +61,45 @@ export const roleService = {
   },
 
   findOne: async (req) => {
-    return `This action returns a id: ${req.params.id} role`;
+    const role = await prisma.roles.findUnique({
+      where: {
+        id: +req.params.id
+      }
+    });
+    console.log(`🔎 Roles - findOne role:`, role)
+    return role;
+  },
+
+  toggleIsActive: async (req) => {
+    const user = req.user;
+    console.log(`🔎 Roles - /toggle-is-active user:`, user);
+
+    if (!user) {
+      throw new Error(`You don't have permission to toggle role`);
+    }
+
+    // const role = await prisma.roles.findUnique({
+    //   where: {
+    //     id: +req.params.id
+    //   }
+    // });
+
+    // if (!role) {
+    //   throw new Error(`Role not found`);
+    // }
+
+    // const updatedRole = await prisma.roles.update({
+    //   where: {
+    //     id: +req.params.id
+    //   },
+    //   data: {
+    //     isActive: !role.isActive
+    //   }
+    // });
+
+    // return updatedRole;
+
+    return 'Toggle role successfully';
   },
 
   update: async (req) => {

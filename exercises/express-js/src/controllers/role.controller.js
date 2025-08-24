@@ -1,5 +1,5 @@
-import { roleService } from "../services/role.service";
 import { responseSuccess } from "../common/helpers/response.helpers";
+import { roleService } from "../services/role.service";
 
 export const roleController = {
   create: async (req, res, next) => {
@@ -17,6 +17,12 @@ export const roleController = {
   findOne: async (req, res, next) => {
     const result = await roleService.findOne(req);
     const response = responseSuccess(result, `Get role #${req.params.id} successfully`);
+    res.status(response.statusCode).json(response);
+  },
+
+  toggleIsActive: async (req, res, next) => {
+    const result = await roleService.toggleIsActive(req);
+    const response = responseSuccess(result, `Toggle role #${req.params.id} successfully`);
     res.status(response.statusCode).json(response);
   },
 

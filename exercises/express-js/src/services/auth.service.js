@@ -1,9 +1,8 @@
-import prisma from '../common/prisma/init.prisma';
 import * as bcrypt from 'bcrypt';
+import prisma from '../common/prisma/init.prisma';
 
 import { BadResquestException, UnauthorizedException } from '../common/helpers/exception.helper';
 import { tokenService } from './token.service';
-import { sendMail } from '../common/nodemailer/init.nodemailer';
 
 export const authService = {
   create: async (req) => {
@@ -60,6 +59,14 @@ export const authService = {
 
     if (!user) throw new BadResquestException("User does not exist. Can't login");
 
+    // do tài khoảng đăng nhậo bằng gmail hoặc facebook
+    // lúc này tải khoảng sẽ không có mật khẩu
+    // nên nếu người dùng cố tình đăng nhập bằng email thì sẽ không có mật khẩu để kiểm trả
+    // nên phải bắt người dùng đăng nhập bằng email vào setting để cập nhật lại mật khẩu mới
+    if (!user.password) {
+      throw new BadResquestException("User registered via Google OAuth. Can't login. Đề cập lại mật khẩu mới trong login");
+    }
+
     // Nếu code chạy được tới đây => đảm bảo có user
     // user.password
     const isPasswordValid = bcrypt.compareSync(password, user.password); // true | false
@@ -97,11 +104,13 @@ export const authService = {
     });
     const decodedRefreshToken = tokenService.verifyRefreshToken(refreshToken);
 
+    // @ts-ignore
     if (decodedAccessToken.userId !== decodedRefreshToken.userId)
       throw new UnauthorizedException('Token Invalid');
 
     const user = await prisma.users.findUnique({
       where: {
+        // @ts-ignore
         id: decodedRefreshToken.userId,
       },
     });

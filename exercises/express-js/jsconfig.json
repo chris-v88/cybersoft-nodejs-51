@@ -2,9 +2,15 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": false,
     "allowSyntheticDefaultImports": true,
+    "checkJs": true,
+    "allowJs": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    },
     "esModuleInterop": true,
     "strict": false,
     "skipLibCheck": true,
@@ -12,9 +18,11 @@
   },
   "include": [
     "src/**/*",
+    "server.js",
     "*.js"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "generated"
   ]
 }
