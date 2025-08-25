@@ -37,4 +37,8 @@
  * passport: thư viện cha sẽ luôn cần cài nếu muốn sử dụng passport-google-oauth20
  *
  * nodemailer: thư viện để gửi email
+ * 
+ * jest: thư viện giúp viết unit test
+ *
+ * @jest/types : thư viện chứa các kiểu dữ liệu (type definitions) cho jest, giúp có thêm type gợi ý
  */

@@ -43,7 +43,9 @@ export const authService = {
         fullName,
       },
     });
-    // console.log('🚀 ~ newUser:', newUser);
+    console.log('🔑 Register ~ new user:', newUser);
+
+    delete newUser.password;
 
     return newUser;
   },

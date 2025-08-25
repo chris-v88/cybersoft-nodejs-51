@@ -5,12 +5,9 @@
     "moduleResolution": "node",
     "allowImportingTsExtensions": false,
     "allowSyntheticDefaultImports": true,
-    "checkJs": true,
+    "checkJs": false,
     "allowJs": true,
     "baseUrl": "./src",
-    "paths": {
-      "@/*": ["*"]
-    },
     "esModuleInterop": true,
     "strict": false,
     "skipLibCheck": true,
@@ -23,6 +20,7 @@
   ],
   "exclude": [
     "node_modules",
-    "generated"
+    "generated",
+    "src/common/tests/**/*",
   ]
 }
