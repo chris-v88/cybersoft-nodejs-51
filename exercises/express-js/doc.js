@@ -24,21 +24,23 @@
  * sequelize-auto: để tự động sinh ra các model từ DB hiện tại
  *                - npx sequelize-auto -o "./src/models" -d database_name -h localhost -u username -p 3306 -x password --dialect mysql
  *
- * cors: cho phép FE nào sử dụng (API) lấy dữ liệu từ BE
+ * cors : cho phép FE nào sử dụng (API) lấy dữ liệu từ BE
  *      - middleware để xử lý CORS (Cross-Origin Resource Sharing)
  *      - app.use(cors());
  *
- * bcrypt: mã hoá mật khẩu (bắt buộc phải sử dụng khi lưu mật khẩu)
+ * bcrypt : mã hoá mật khẩu (bắt buộc phải sử dụng khi lưu mật khẩu)
  * 
- * jsonwebtoken: tạo và xác thực token (JWT)
+ * jsonwebtoken : tạo và xác thực token (JWT)
  * 
  * passport-google-oauth20: chiến lược (logic) cho flow đăng nhập bằng google
  * 
- * passport: thư viện cha sẽ luôn cần cài nếu muốn sử dụng passport-google-oauth20
+ * passport : thư viện cha sẽ luôn cần cài nếu muốn sử dụng passport-google-oauth20
  *
- * nodemailer: thư viện để gửi email
+ * nodemailer : thư viện để gửi email
  * 
  * jest: thư viện giúp viết unit test
  *
  * @jest/types : thư viện chứa các kiểu dữ liệu (type definitions) cho jest, giúp có thêm type gợi ý
+ *
+ * swagger-ui-express : thư viện giúp tạo tài liệu API dựa trên OpenAPI Specification, tạo ra swagger
  */
