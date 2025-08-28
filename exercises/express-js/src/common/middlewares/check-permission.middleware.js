@@ -49,7 +49,7 @@ export const checkPermission = async (req, res, next) => {
     throw BadResquestException('❌ You do not have permission to access this resource');
   }
 
-  console.log('📌 Check Permission :', { user, method, endpoint, rolePermission });
+  // console.log('📌 Check Permission :', { user, method, endpoint, rolePermission });
 
   next();
 };

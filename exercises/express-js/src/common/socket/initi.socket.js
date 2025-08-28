@@ -6,6 +6,6 @@ export const initSocket = (httpServer) => {
   });
 
   io.on('connection', (socket) => {
-    // ...
+    console.log(`🚀 ~ initSocket ~ socket:`, socket.id);
   });
 };
