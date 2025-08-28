@@ -216,9 +216,14 @@ CREATE TABLE `Chats` (
 	`updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+ALTER TABLE `Chats`
+ADD COLUMN `keyForChatOne` VARCHAR(255) UNIQUE;
+
+DROP TABLE `ChatGroups`;
 CREATE TABLE IF NOT EXISTS `ChatGroups` (
 	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	-- 
+-- 	`keyForChatOne` VARCHAR(255) UNIQUE,
 	`name` VARCHAR(255),
 	`ownerId` INT,
 	FOREIGN KEY (`ownerId`) REFERENCES `Users` (`id`),
@@ -260,3 +265,18 @@ CREATE TABLE IF NOT EXISTS `ChatMessages` (
 	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+
+-- tạo dummy account
+INSERT INTO `Users` (`email`, `fullName`, `avatar`, `password`, `roleId`)
+VALUES
+  ('nguyenvananh@gmail.com', 'Nguyen Van Anh', 'https://picsum.photos/seed/101/200', 'anh2025abc', 2),
+  ('tranthibich@gmail.com', 'Tran Thi Bich', 'https://picsum.photos/seed/102/200', 'bichXyz789', 2),
+  ('phamquocdat@gmail.com', 'Pham Quoc Dat', 'https://picsum.photos/seed/103/200', 'datQ12345', 2),
+  ('leminhduc@gmail.com', 'Le Minh Duc', 'https://picsum.photos/seed/104/200', 'ducMinh!2024', 2),
+  ('hoangkim@gmail.com', 'Hoang Kim', 'https://picsum.photos/seed/105/200', 'kimHoang@88', 2),
+  ('dangthanh@gmail.com', 'Dang Thanh', 'https://picsum.photos/seed/106/200', 'thanhDang#77', 2),
+  ('buituan@gmail.com', 'Bui Tuan', 'https://picsum.photos/seed/107/200', 'tuanBui2023', 2),
+  ('vothanhhoa@gmail.com', 'Vo Thanh Hoa', 'https://picsum.photos/seed/108/200', 'hoaVo!abc', 2),
+  ('nguyenthuy@gmail.com', 'Nguyen Thuy', 'https://picsum.photos/seed/109/200', 'thuyNguyen@1', 2),
+  ('phamthanhson@gmail.com', 'Pham Thanh Son', 'https://picsum.photos/seed/110/200', 'sonPham#xyz', 2);
