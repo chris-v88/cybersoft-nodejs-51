@@ -5,6 +5,7 @@ import articleRouter from './article.router';
 import authRouter from './auth.router';
 import demoRouter from './demo.router';
 import roleRouter from './role.router';
+import userRouter from './user.router';
 
 const rootRouter = express.Router();
 
@@ -15,5 +16,6 @@ rootRouter.use('/demo', demoRouter);
 rootRouter.use('/articles', articleRouter);
 rootRouter.use('/auth', authRouter);
 rootRouter.use('/role', roleRouter);
+rootRouter.use('/user', userRouter);
 
 export default rootRouter;

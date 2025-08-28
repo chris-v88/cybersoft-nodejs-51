@@ -1,6 +1,6 @@
 import prisma from "../common/prisma/init.prisma";
 
-export const roleService = {
+export const userService = {
   create: async (req) => {
     return `This action create`;
   },
@@ -19,7 +19,8 @@ export const roleService = {
 
     Object.entries(filters).forEach(([key, value]) => {
       if (!value) {
-        delete filters['id'];
+        // delete filters['id']; // ❌ This always deletes 'id' regardless of the key
+        delete filters[key]; // ✅ Delete the actual key, not always 'id'
         return;
       }
 
@@ -39,16 +40,16 @@ export const roleService = {
     // eslint-disable-next-line no-undef
     console.log({ page, pageSize, index, filters });
 
-    const rolesPromise = prisma.roles.findMany({
+    const usersPromise = prisma.users.findMany({
       skip: index, // SQL: OFFSET
       take: pageSize, // SQL: LIMIT
       where: filters,
     });
 
     // đếm số lượng row trong table
-    const totalItemPromise = prisma.roles.count(); // SQL: COUNT
+    const totalItemPromise = prisma.users.count(); // SQL: COUNT
 
-    const [roles, totalItem] = await Promise.all([rolesPromise, totalItemPromise]);
+    const [users, totalItem] = await Promise.all([usersPromise, totalItemPromise]);
 
     const totalPage = totalItem / pageSize;
 
@@ -57,59 +58,43 @@ export const roleService = {
       pageSize,
       totalItem: totalItem,
       totalPage: Math.ceil(totalPage),
-      items: roles || [],
+      items: users || [],
     };
   },
 
   findOne: async (req) => {
-    const role = await prisma.roles.findUnique({
+    const user = await prisma.users.findUnique({
       where: {
-        id: +req.params.id
+        id: Number(req.params.id),
+      },
+      include: {
+        Roles: true,
       }
     });
-    // eslint-disable-next-line no-undef
-    console.log(`🔎 Roles - findOne role:`, role)
-    return role;
-  },
 
-  toggleIsActive: async (req) => {
-    const user = req.user;
-    // eslint-disable-next-line no-undef
-    console.log(`🔎 Roles - /toggle-is-active user:`, user);
-
-    if (!user) {
-      throw new Error(`You don't have permission to toggle role`);
-    }
-
-    // const role = await prisma.roles.findUnique({
-    //   where: {
-    //     id: +req.params.id
-    //   }
-    // });
-
-    // if (!role) {
-    //   throw new Error(`Role not found`);
-    // }
-
-    // const updatedRole = await prisma.roles.update({
-    //   where: {
-    //     id: +req.params.id
-    //   },
-    //   data: {
-    //     isActive: !role.isActive
-    //   }
-    // });
-
-    // return updatedRole;
-
-    return 'Toggle role successfully';
+    return user;
   },
 
   update: async (req) => {
-    return `This action updates a id: ${req.params.id} role`;
+    const user = await prisma.users.update({
+      where: {
+        id: Number(req.params.id),
+      },
+      data: {
+        ...req.body,
+      },
+    });
+
+    return user;
   },
 
   remove: async (req) => {
-    return `This action removes a id: ${req.params.id} role`;
+    const user = await prisma.users.delete({
+      where: {
+        id: Number(req.params.id),
+      },
+    });
+
+    return user;
   },
 };

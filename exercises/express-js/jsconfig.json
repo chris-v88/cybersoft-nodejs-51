@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "node",
-    "allowImportingTsExtensions": false,
     "allowSyntheticDefaultImports": true,
-    "checkJs": false,
+    "allowImportingTsExtensions": false,
+    "checkJs": true,
     "allowJs": true,
-    "baseUrl": "./src",
     "esModuleInterop": true,
     "strict": false,
     "skipLibCheck": true,
