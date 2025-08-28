@@ -43,4 +43,6 @@
  * @jest/types : thư viện chứa các kiểu dữ liệu (type definitions) cho jest, giúp có thêm type gợi ý
  *
  * swagger-ui-express : thư viện giúp tạo tài liệu API dựa trên OpenAPI Specification, tạo ra swagger
+ *
+ * socket.io : thư viện để thêm tính năng real-time cho ứng dụng web, cho phép giao tiếp hai chiều giữa client và server
  */
