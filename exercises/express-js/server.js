@@ -1,12 +1,14 @@
-import 'dotenv/config'; 
+import 'dotenv/config';
 
-import express from 'express';
-import rootRouter from './src/routers/root.router';
 import cors from 'cors';
+import express from 'express';
+import { createServer } from 'http';
+import rootRouter from './src/routers/root.router';
 
-import { responseError } from './src/common/helpers/response.helpers';
 import { appError } from './src/common/app-error/app-error.error';
+import { responseError } from './src/common/helpers/response.helpers';
 import { initGoogleAuth20 } from './src/common/passports/google-auth20.passport';
+import { initSocket } from './src/common/socket/initi.socket';
 
 const app = express();
 // express.json(); // Middleware to parse JSON bodies
@@ -31,6 +33,7 @@ app.use('/api', rootRouter);
 app.use(appError);
 
 app.use((err, req, res, next) => {
+  // eslint-disable-next-line no-undef
   console.error('Error in middleware:', err);
   // res.status(500).json({ error: 'Internal Server Error' });
   const resData = responseError(err, err?.message, err?.code, err?.stack);
@@ -38,16 +41,25 @@ app.use((err, req, res, next) => {
   res.status(resData.statusCode).json(resData);
 });
 
+/**
+ * Socket.IO
+ *
+ */
+const httpServer = createServer(app);
+initSocket(httpServer);
+
+// Đây là cổng của server, không phải cổng của API
 const port = 3069;
+
 /**
  * Starts the server and listens on the specified port.
  * @param {number} port - The port number to listen on.
  * @param {Function} callback - Optional callback function to execute when the server starts.
  */
-app.listen(port, () => {
+httpServer.listen(port, () => {
+  // eslint-disable-next-line no-undef
   console.log(`Server is running on http://localhost:${port}`);
 });
-
 
 /**
  * tự động lưu kết quả vào biến môi trường trong postman
