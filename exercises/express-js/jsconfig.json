@@ -1,26 +1,17 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
     "target": "ES2022",
     "module": "ESNext",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": false,
-    "checkJs": true,
+    "baseUrl": "./src",
+    "checkJs": false,
     "allowJs": true,
-    "esModuleInterop": true,
-    "strict": false,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "paths": {
+      "@common/*": ["common/*"],
+      "@services/*": ["services/*"],
+      "@controllers/*": ["controllers/*"],
+      "@routers/*": ["routers/*"]
+    }
   },
-  "include": [
-    "src/**/*",
-    "server.js",
-    "*.js"
-  ],
-  "exclude": [
-    "node_modules",
-    "generated",
-    "src/common/tests/**/*",
-  ]
+  "exclude": ["node_modules", "tmp", "generated", "coverage"]
 }

@@ -3866,6 +3866,7 @@ export namespace Prisma {
     deletedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    keyForChatOne: string | null
   }
 
   export type ChatGroupsMaxAggregateOutputType = {
@@ -3877,6 +3878,7 @@ export namespace Prisma {
     deletedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    keyForChatOne: string | null
   }
 
   export type ChatGroupsCountAggregateOutputType = {
@@ -3888,6 +3890,7 @@ export namespace Prisma {
     deletedAt: number
     createdAt: number
     updatedAt: number
+    keyForChatOne: number
     _all: number
   }
 
@@ -3913,6 +3916,7 @@ export namespace Prisma {
     deletedAt?: true
     createdAt?: true
     updatedAt?: true
+    keyForChatOne?: true
   }
 
   export type ChatGroupsMaxAggregateInputType = {
@@ -3924,6 +3928,7 @@ export namespace Prisma {
     deletedAt?: true
     createdAt?: true
     updatedAt?: true
+    keyForChatOne?: true
   }
 
   export type ChatGroupsCountAggregateInputType = {
@@ -3935,6 +3940,7 @@ export namespace Prisma {
     deletedAt?: true
     createdAt?: true
     updatedAt?: true
+    keyForChatOne?: true
     _all?: true
   }
 
@@ -4033,6 +4039,7 @@ export namespace Prisma {
     deletedAt: Date | null
     createdAt: Date
     updatedAt: Date
+    keyForChatOne: string | null
     _count: ChatGroupsCountAggregateOutputType | null
     _avg: ChatGroupsAvgAggregateOutputType | null
     _sum: ChatGroupsSumAggregateOutputType | null
@@ -4063,6 +4070,7 @@ export namespace Prisma {
     deletedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    keyForChatOne?: boolean
     ChatGroupMembers?: boolean | ChatGroups$ChatGroupMembersArgs<ExtArgs>
     Users?: boolean | ChatGroups$UsersArgs<ExtArgs>
     ChatMessages?: boolean | ChatGroups$ChatMessagesArgs<ExtArgs>
@@ -4080,9 +4088,10 @@ export namespace Prisma {
     deletedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    keyForChatOne?: boolean
   }
 
-  export type ChatGroupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "ownerId" | "deletedBy" | "isDeleted" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["chatGroups"]>
+  export type ChatGroupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "ownerId" | "deletedBy" | "isDeleted" | "deletedAt" | "createdAt" | "updatedAt" | "keyForChatOne", ExtArgs["result"]["chatGroups"]>
   export type ChatGroupsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ChatGroupMembers?: boolean | ChatGroups$ChatGroupMembersArgs<ExtArgs>
     Users?: boolean | ChatGroups$UsersArgs<ExtArgs>
@@ -4106,6 +4115,7 @@ export namespace Prisma {
       deletedAt: Date | null
       createdAt: Date
       updatedAt: Date
+      keyForChatOne: string | null
     }, ExtArgs["result"]["chatGroups"]>
     composites: {}
   }
@@ -4486,6 +4496,7 @@ export namespace Prisma {
     readonly deletedAt: FieldRef<"ChatGroups", 'DateTime'>
     readonly createdAt: FieldRef<"ChatGroups", 'DateTime'>
     readonly updatedAt: FieldRef<"ChatGroups", 'DateTime'>
+    readonly keyForChatOne: FieldRef<"ChatGroups", 'String'>
   }
     
 
@@ -12245,7 +12256,8 @@ export namespace Prisma {
     isDeleted: 'isDeleted',
     deletedAt: 'deletedAt',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    keyForChatOne: 'keyForChatOne'
   };
 
   export type ChatGroupsScalarFieldEnum = (typeof ChatGroupsScalarFieldEnum)[keyof typeof ChatGroupsScalarFieldEnum]
@@ -12384,7 +12396,8 @@ export namespace Prisma {
 
 
   export const ChatGroupsOrderByRelevanceFieldEnum: {
-    name: 'name'
+    name: 'name',
+    keyForChatOne: 'keyForChatOne'
   };
 
   export type ChatGroupsOrderByRelevanceFieldEnum = (typeof ChatGroupsOrderByRelevanceFieldEnum)[keyof typeof ChatGroupsOrderByRelevanceFieldEnum]
@@ -12650,6 +12663,7 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"ChatGroups"> | Date | string | null
     createdAt?: DateTimeFilter<"ChatGroups"> | Date | string
     updatedAt?: DateTimeFilter<"ChatGroups"> | Date | string
+    keyForChatOne?: StringNullableFilter<"ChatGroups"> | string | null
     ChatGroupMembers?: ChatGroupMembersListRelationFilter
     Users?: XOR<UsersNullableScalarRelationFilter, UsersWhereInput> | null
     ChatMessages?: ChatMessagesListRelationFilter
@@ -12664,6 +12678,7 @@ export namespace Prisma {
     deletedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    keyForChatOne?: SortOrderInput | SortOrder
     ChatGroupMembers?: ChatGroupMembersOrderByRelationAggregateInput
     Users?: UsersOrderByWithRelationInput
     ChatMessages?: ChatMessagesOrderByRelationAggregateInput
@@ -12672,6 +12687,7 @@ export namespace Prisma {
 
   export type ChatGroupsWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    keyForChatOne?: string
     AND?: ChatGroupsWhereInput | ChatGroupsWhereInput[]
     OR?: ChatGroupsWhereInput[]
     NOT?: ChatGroupsWhereInput | ChatGroupsWhereInput[]
@@ -12685,7 +12701,7 @@ export namespace Prisma {
     ChatGroupMembers?: ChatGroupMembersListRelationFilter
     Users?: XOR<UsersNullableScalarRelationFilter, UsersWhereInput> | null
     ChatMessages?: ChatMessagesListRelationFilter
-  }, "id">
+  }, "id" | "keyForChatOne">
 
   export type ChatGroupsOrderByWithAggregationInput = {
     id?: SortOrder
@@ -12696,6 +12712,7 @@ export namespace Prisma {
     deletedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    keyForChatOne?: SortOrderInput | SortOrder
     _count?: ChatGroupsCountOrderByAggregateInput
     _avg?: ChatGroupsAvgOrderByAggregateInput
     _max?: ChatGroupsMaxOrderByAggregateInput
@@ -12715,6 +12732,7 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableWithAggregatesFilter<"ChatGroups"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"ChatGroups"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ChatGroups"> | Date | string
+    keyForChatOne?: StringNullableWithAggregatesFilter<"ChatGroups"> | string | null
   }
 
   export type ChatMessagesWhereInput = {
@@ -13463,6 +13481,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    keyForChatOne?: string | null
     ChatGroupMembers?: ChatGroupMembersCreateNestedManyWithoutChatGroupsInput
     Users?: UsersCreateNestedOneWithoutChatGroupsInput
     ChatMessages?: ChatMessagesCreateNestedManyWithoutChatGroupsInput
@@ -13477,6 +13496,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    keyForChatOne?: string | null
     ChatGroupMembers?: ChatGroupMembersUncheckedCreateNestedManyWithoutChatGroupsInput
     ChatMessages?: ChatMessagesUncheckedCreateNestedManyWithoutChatGroupsInput
   }
@@ -13488,6 +13508,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyForChatOne?: NullableStringFieldUpdateOperationsInput | string | null
     ChatGroupMembers?: ChatGroupMembersUpdateManyWithoutChatGroupsNestedInput
     Users?: UsersUpdateOneWithoutChatGroupsNestedInput
     ChatMessages?: ChatMessagesUpdateManyWithoutChatGroupsNestedInput
@@ -13502,6 +13523,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyForChatOne?: NullableStringFieldUpdateOperationsInput | string | null
     ChatGroupMembers?: ChatGroupMembersUncheckedUpdateManyWithoutChatGroupsNestedInput
     ChatMessages?: ChatMessagesUncheckedUpdateManyWithoutChatGroupsNestedInput
   }
@@ -13515,6 +13537,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    keyForChatOne?: string | null
   }
 
   export type ChatGroupsUpdateManyMutationInput = {
@@ -13524,6 +13547,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyForChatOne?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ChatGroupsUncheckedUpdateManyInput = {
@@ -13535,6 +13559,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyForChatOne?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ChatMessagesCreateInput = {
@@ -14449,6 +14474,7 @@ export namespace Prisma {
     deletedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    keyForChatOne?: SortOrder
   }
 
   export type ChatGroupsAvgOrderByAggregateInput = {
@@ -14466,6 +14492,7 @@ export namespace Prisma {
     deletedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    keyForChatOne?: SortOrder
   }
 
   export type ChatGroupsMinOrderByAggregateInput = {
@@ -14477,6 +14504,7 @@ export namespace Prisma {
     deletedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    keyForChatOne?: SortOrder
   }
 
   export type ChatGroupsSumOrderByAggregateInput = {
@@ -15778,6 +15806,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    keyForChatOne?: string | null
     Users?: UsersCreateNestedOneWithoutChatGroupsInput
     ChatMessages?: ChatMessagesCreateNestedManyWithoutChatGroupsInput
   }
@@ -15791,6 +15820,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    keyForChatOne?: string | null
     ChatMessages?: ChatMessagesUncheckedCreateNestedManyWithoutChatGroupsInput
   }
 
@@ -15865,6 +15895,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyForChatOne?: NullableStringFieldUpdateOperationsInput | string | null
     Users?: UsersUpdateOneWithoutChatGroupsNestedInput
     ChatMessages?: ChatMessagesUpdateManyWithoutChatGroupsNestedInput
   }
@@ -15878,6 +15909,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyForChatOne?: NullableStringFieldUpdateOperationsInput | string | null
     ChatMessages?: ChatMessagesUncheckedUpdateManyWithoutChatGroupsNestedInput
   }
 
@@ -16099,6 +16131,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    keyForChatOne?: string | null
     ChatGroupMembers?: ChatGroupMembersCreateNestedManyWithoutChatGroupsInput
     Users?: UsersCreateNestedOneWithoutChatGroupsInput
   }
@@ -16112,6 +16145,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    keyForChatOne?: string | null
     ChatGroupMembers?: ChatGroupMembersUncheckedCreateNestedManyWithoutChatGroupsInput
   }
 
@@ -16180,6 +16214,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyForChatOne?: NullableStringFieldUpdateOperationsInput | string | null
     ChatGroupMembers?: ChatGroupMembersUpdateManyWithoutChatGroupsNestedInput
     Users?: UsersUpdateOneWithoutChatGroupsNestedInput
   }
@@ -16193,6 +16228,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyForChatOne?: NullableStringFieldUpdateOperationsInput | string | null
     ChatGroupMembers?: ChatGroupMembersUncheckedUpdateManyWithoutChatGroupsNestedInput
   }
 
@@ -16693,6 +16729,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    keyForChatOne?: string | null
     ChatGroupMembers?: ChatGroupMembersCreateNestedManyWithoutChatGroupsInput
     ChatMessages?: ChatMessagesCreateNestedManyWithoutChatGroupsInput
   }
@@ -16705,6 +16742,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    keyForChatOne?: string | null
     ChatGroupMembers?: ChatGroupMembersUncheckedCreateNestedManyWithoutChatGroupsInput
     ChatMessages?: ChatMessagesUncheckedCreateNestedManyWithoutChatGroupsInput
   }
@@ -16855,6 +16893,7 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"ChatGroups"> | Date | string | null
     createdAt?: DateTimeFilter<"ChatGroups"> | Date | string
     updatedAt?: DateTimeFilter<"ChatGroups"> | Date | string
+    keyForChatOne?: StringNullableFilter<"ChatGroups"> | string | null
   }
 
   export type ChatMessagesUpsertWithWhereUniqueWithoutUsersInput = {
@@ -17193,6 +17232,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    keyForChatOne?: string | null
   }
 
   export type ChatMessagesCreateManyUsersInput = {
@@ -17253,6 +17293,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyForChatOne?: NullableStringFieldUpdateOperationsInput | string | null
     ChatGroupMembers?: ChatGroupMembersUpdateManyWithoutChatGroupsNestedInput
     ChatMessages?: ChatMessagesUpdateManyWithoutChatGroupsNestedInput
   }
@@ -17265,6 +17306,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyForChatOne?: NullableStringFieldUpdateOperationsInput | string | null
     ChatGroupMembers?: ChatGroupMembersUncheckedUpdateManyWithoutChatGroupsNestedInput
     ChatMessages?: ChatMessagesUncheckedUpdateManyWithoutChatGroupsNestedInput
   }
@@ -17277,6 +17319,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyForChatOne?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ChatMessagesUpdateWithoutUsersInput = {

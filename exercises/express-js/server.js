@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
  *
  */
 const httpServer = createServer(app);
-initSocket(httpServer);
+initSocket(httpServer); 
 
 // Đây là cổng của server, không phải cổng của API
 const port = 3069;

@@ -47,6 +47,7 @@ model ChatGroups {
   deletedAt        DateTime?          @db.Timestamp(0)
   createdAt        DateTime           @default(now()) @db.Timestamp(0)
   updatedAt        DateTime           @default(now()) @db.Timestamp(0)
+  keyForChatOne    String?            @unique(map: "keyForChatOne") @db.VarChar(255)
   ChatGroupMembers ChatGroupMembers[]
   Users            Users?             @relation(fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ChatGroups_ibfk_1")
   ChatMessages     ChatMessages[]

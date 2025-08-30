@@ -153,7 +153,8 @@ exports.Prisma.ChatGroupsScalarFieldEnum = {
   isDeleted: 'isDeleted',
   deletedAt: 'deletedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  keyForChatOne: 'keyForChatOne'
 };
 
 exports.Prisma.ChatMessagesScalarFieldEnum = {
@@ -259,7 +260,8 @@ exports.Prisma.ArticlesOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.ChatGroupsOrderByRelevanceFieldEnum = {
-  name: 'name'
+  name: 'name',
+  keyForChatOne: 'keyForChatOne'
 };
 
 exports.Prisma.ChatMessagesOrderByRelevanceFieldEnum = {
