@@ -32,6 +32,50 @@ export const chatGroupService = {
       }
 
       // TODO: xử lý ngày tháng
+      if (key.includes('Date') || key.includes('At')) {
+        // Handle date range filtering
+        if (typeof value === 'object' && value !== null) {
+          // Handle date range: { from: "2024-01-01", to: "2024-12-31" }
+          const dateFilter = {};
+
+          if (value.from) {
+            dateFilter.gte = new Date(value.from);
+          }
+
+          if (value.to) {
+            // Add 23:59:59 to include the entire end date
+            const endDate = new Date(value.to);
+            endDate.setHours(23, 59, 59, 999);
+            dateFilter.lte = endDate;
+          }
+
+          if (Object.keys(dateFilter).length > 0) {
+            filters[key] = dateFilter;
+          }
+        } else if (typeof value === 'string') {
+          // Handle single date: "2024-01-01"
+          try {
+            const date = new Date(value);
+            if (!isNaN(date.getTime())) {
+              // Create date range for the entire day
+              const startOfDay = new Date(date);
+              startOfDay.setHours(0, 0, 0, 0);
+
+              const endOfDay = new Date(date);
+              endOfDay.setHours(23, 59, 59, 999);
+
+              filters[key] = {
+                gte: startOfDay,
+                lte: endOfDay,
+              };
+            }
+          } catch (error) {
+            console.error(`Invalid date format for ${key}:`, value);
+            delete filters[key];
+          }
+        }
+        return; // Skip the string contains logic for date fields
+      }
     });
 
     console.log({ page, pageSize, index, filters });
