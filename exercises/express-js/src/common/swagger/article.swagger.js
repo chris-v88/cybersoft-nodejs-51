@@ -100,16 +100,16 @@ export const articleSwagger = {
               },
             },
           },
-            example: {
-              status: "success",
-              statusCode: 200,
-              message: "Get article success",
-              data: {
-                id: 1,
-                title: "How to use Swagger",
-                content: "Swagger makes API docs easy!"
-              }
-            }
+          example: {
+            status: 'success',
+            statusCode: 200,
+            message: 'Get article success',
+            data: {
+              id: 1,
+              title: 'How to use Swagger',
+              content: 'Swagger makes API docs easy!',
+            },
+          },
         },
         404: {
           description: 'Article not found',

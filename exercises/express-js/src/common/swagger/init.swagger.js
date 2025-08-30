@@ -1,6 +1,6 @@
-import { articleSwagger } from "./article.swagger";
-import { authSwagger } from "./auth.swagger";
-import { userSwagger } from "./user.swagger";
+import { articleSwagger } from './article.swagger';
+import { authSwagger } from './auth.swagger';
+import { userSwagger } from './user.swagger';
 
 export const swaggerDocument = {
   openapi: '3.1.1',
@@ -16,15 +16,15 @@ export const swaggerDocument = {
     {
       url: 'http://domain.com/api',
       description: 'Server BE Online',
-    }
+    },
   ],
   components: {
     securitySchemes: {
       BearerAuth: {
         type: 'http',
         scheme: 'bearer',
-        bearerFormat: 'JWT'
-      }
+        bearerFormat: 'JWT',
+      },
     },
     schemas: {
       Article: {
@@ -32,15 +32,15 @@ export const swaggerDocument = {
         properties: {
           id: { type: 'integer' },
           title: { type: 'string' },
-          content: { type: 'string' }
-        }
-      }
-    }
+          content: { type: 'string' },
+        },
+      },
+    },
   },
   security: [{ BearerAuth: [] }],
   paths: {
     ...articleSwagger,
     ...authSwagger,
     ...userSwagger,
-  }
-}
+  },
+};

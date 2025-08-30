@@ -1,4 +1,4 @@
-import prisma from "../common/prisma/init.prisma";
+import prisma from '../common/prisma/init.prisma';
 
 export const roleService = {
   create: async (req) => {
@@ -64,11 +64,11 @@ export const roleService = {
   findOne: async (req) => {
     const role = await prisma.roles.findUnique({
       where: {
-        id: +req.params.id
-      }
+        id: +req.params.id,
+      },
     });
     // eslint-disable-next-line no-undef
-    console.log(`🔎 Roles - findOne role:`, role)
+    console.log(`🔎 Roles - findOne role:`, role);
     return role;
   },
 

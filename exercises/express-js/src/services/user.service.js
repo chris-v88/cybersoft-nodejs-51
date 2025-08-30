@@ -1,4 +1,4 @@
-import prisma from "../common/prisma/init.prisma";
+import prisma from '../common/prisma/init.prisma';
 
 export const userService = {
   create: async (req) => {
@@ -69,7 +69,7 @@ export const userService = {
       },
       include: {
         Roles: true,
-      }
+      },
     });
 
     return user;

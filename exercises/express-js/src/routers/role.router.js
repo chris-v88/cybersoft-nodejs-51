@@ -1,8 +1,6 @@
 import express from 'express';
 import { protect } from '../common/middlewares/protect.middleware';
 import { roleController } from '../controllers/role.controller';
-;
-
 const roleRouter = express.Router();
 
 // Tạo route CRUD

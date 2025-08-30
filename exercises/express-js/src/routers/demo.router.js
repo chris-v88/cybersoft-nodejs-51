@@ -37,7 +37,7 @@ demoRouter.get(
     next();
   },
   // Call the service method from the demoController
-  demoController.checkServer
+  demoController.checkServer,
 );
 
 // ví dụ trong postman:

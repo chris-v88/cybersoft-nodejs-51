@@ -11,7 +11,7 @@ export const responseError = (
   error,
   message = 'Internal Server Error',
   code = 500,
-  stack = null
+  stack = null,
 ) => {
   return {
     status: 'error',

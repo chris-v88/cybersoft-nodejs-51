@@ -66,7 +66,9 @@ export const authService = {
     // nên nếu người dùng cố tình đăng nhập bằng email thì sẽ không có mật khẩu để kiểm trả
     // nên phải bắt người dùng đăng nhập bằng email vào setting để cập nhật lại mật khẩu mới
     if (!user.password) {
-      throw new BadResquestException("User registered via Google OAuth. Can't login. Đề cập lại mật khẩu mới trong login");
+      throw new BadResquestException(
+        "User registered via Google OAuth. Can't login. Đề cập lại mật khẩu mới trong login",
+      );
     }
 
     // Nếu code chạy được tới đây => đảm bảo có user

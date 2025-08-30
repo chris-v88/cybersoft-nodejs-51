@@ -29,7 +29,7 @@ authRouter.get(
   //   console.log('1234');
   //   next();
   // },
-  passport.authenticate('google', { scope: ['profile', 'email'] })
+  passport.authenticate('google', { scope: ['profile', 'email'] }),
 );
 
 // sau khi người dùng đã xác thực thành công với bên Google
@@ -45,9 +45,9 @@ authRouter.get(
     //   console.log('✅ Google authentication successful');
     //   next();
     // },
-    { failureRedirect: '/login', session: false }
+    { failureRedirect: '/login', session: false },
   ),
-  authController.googleAuth20 // controller xử lý sau khi xác thực thành công
+  authController.googleAuth20, // controller xử lý sau khi xác thực thành công
 );
 
 authRouter.get('/:id', authController.findOne);

@@ -14,11 +14,11 @@ export const authSwagger = {
               properties: {
                 email: { type: 'string', format: 'email' },
                 password: { type: 'string', minLength: 6 },
-                fullName: { type: 'string' }
-              }
-            }
-          }
-        }
+                fullName: { type: 'string' },
+              },
+            },
+          },
+        },
       },
       responses: {
         200: {
@@ -30,15 +30,15 @@ export const authSwagger = {
                 properties: {
                   id: { type: 'integer' },
                   email: { type: 'string' },
-                  fullName: { type: 'string' }
-                }
-              }
-            }
-          }
+                  fullName: { type: 'string' },
+                },
+              },
+            },
+          },
         },
-        400: { description: 'User already exists or invalid input' }
-      }
-    }
+        400: { description: 'User already exists or invalid input' },
+      },
+    },
   },
   '/auth/login': {
     post: {
@@ -54,11 +54,11 @@ export const authSwagger = {
               required: ['email', 'password'],
               properties: {
                 email: { type: 'string', format: 'email' },
-                password: { type: 'string', minLength: 6 }
-              }
-            }
-          }
-        }
+                password: { type: 'string', minLength: 6 },
+              },
+            },
+          },
+        },
       },
       responses: {
         200: {
@@ -69,15 +69,15 @@ export const authSwagger = {
                 type: 'object',
                 properties: {
                   accessToken: { type: 'string' },
-                  refreshToken: { type: 'string' }
-                }
-              }
-            }
-          }
+                  refreshToken: { type: 'string' },
+                },
+              },
+            },
+          },
         },
-        400: { description: 'Invalid credentials or login error' }
-      }
-    }
+        400: { description: 'Invalid credentials or login error' },
+      },
+    },
   },
   '/auth/get-info': {
     get: {
@@ -95,15 +95,15 @@ export const authSwagger = {
                 properties: {
                   id: { type: 'integer' },
                   email: { type: 'string' },
-                  fullName: { type: 'string' }
-                }
-              }
-            }
-          }
+                  fullName: { type: 'string' },
+                },
+              },
+            },
+          },
         },
-        401: { description: 'Unauthorized' }
-      }
-    }
+        401: { description: 'Unauthorized' },
+      },
+    },
   },
   '/auth/refresh-token': {
     post: {
@@ -119,11 +119,11 @@ export const authSwagger = {
               required: ['accessToken', 'refreshToken'],
               properties: {
                 accessToken: { type: 'string' },
-                refreshToken: { type: 'string' }
-              }
-            }
-          }
-        }
+                refreshToken: { type: 'string' },
+              },
+            },
+          },
+        },
       },
       responses: {
         200: {
@@ -134,14 +134,14 @@ export const authSwagger = {
                 type: 'object',
                 properties: {
                   accessToken: { type: 'string' },
-                  refreshToken: { type: 'string' }
-                }
-              }
-            }
-          }
+                  refreshToken: { type: 'string' },
+                },
+              },
+            },
+          },
         },
-        401: { description: 'Token invalid or user invalid' }
-      }
-    }
-  }
+        401: { description: 'Token invalid or user invalid' },
+      },
+    },
+  },
 };

@@ -11,15 +11,15 @@ export const userSwagger = {
           in: 'query',
           description: 'Page number',
           required: false,
-          schema: { type: 'integer', default: 1 }
+          schema: { type: 'integer', default: 1 },
         },
         {
           name: 'pageSize',
           in: 'query',
           description: 'Number of items per page',
           required: false,
-          schema: { type: 'integer', default: 10 }
-        }
+          schema: { type: 'integer', default: 10 },
+        },
       ],
       responses: {
         200: {
@@ -48,19 +48,19 @@ export const userSwagger = {
                             email: { type: 'string' },
                             fullName: { type: 'string' },
                             avatar: { type: 'string', nullable: true },
-                            roleId: { type: 'integer' }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+                            roleId: { type: 'integer' },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   },
   '/users/{id}': {
     get: {
@@ -74,8 +74,8 @@ export const userSwagger = {
           in: 'path',
           required: true,
           description: 'User ID',
-          schema: { type: 'integer' }
-        }
+          schema: { type: 'integer' },
+        },
       ],
       responses: {
         200: {
@@ -95,17 +95,17 @@ export const userSwagger = {
                       email: { type: 'string' },
                       fullName: { type: 'string' },
                       avatar: { type: 'string', nullable: true },
-                      roleId: { type: 'integer' }
-                    }
-                  }
-                }
-              }
-            }
-          }
+                      roleId: { type: 'integer' },
+                    },
+                  },
+                },
+              },
+            },
+          },
         },
-        404: { description: 'User not found' }
-      }
-    }
+        404: { description: 'User not found' },
+      },
+    },
   },
   '/users': {
     post: {
@@ -124,11 +124,11 @@ export const userSwagger = {
                 password: { type: 'string', minLength: 6 },
                 fullName: { type: 'string' },
                 avatar: { type: 'string', nullable: true },
-                roleId: { type: 'integer' }
-              }
-            }
-          }
-        }
+                roleId: { type: 'integer' },
+              },
+            },
+          },
+        },
       },
       responses: {
         200: {
@@ -142,15 +142,15 @@ export const userSwagger = {
                   email: { type: 'string' },
                   fullName: { type: 'string' },
                   avatar: { type: 'string', nullable: true },
-                  roleId: { type: 'integer' }
-                }
-              }
-            }
-          }
+                  roleId: { type: 'integer' },
+                },
+              },
+            },
+          },
         },
-        400: { description: 'User already exists or invalid input' }
-      }
-    }
+        400: { description: 'User already exists or invalid input' },
+      },
+    },
   },
   '/users/{id}': {
     patch: {
@@ -163,8 +163,8 @@ export const userSwagger = {
           in: 'path',
           required: true,
           description: 'User ID',
-          schema: { type: 'integer' }
-        }
+          schema: { type: 'integer' },
+        },
       ],
       requestBody: {
         required: true,
@@ -176,16 +176,16 @@ export const userSwagger = {
                 email: { type: 'string', format: 'email' },
                 fullName: { type: 'string' },
                 avatar: { type: 'string', nullable: true },
-                roleId: { type: 'integer' }
-              }
-            }
-          }
-        }
+                roleId: { type: 'integer' },
+              },
+            },
+          },
+        },
       },
       responses: {
         200: { description: 'User updated successfully' },
-        404: { description: 'User not found' }
-      }
+        404: { description: 'User not found' },
+      },
     },
     delete: {
       tags: ['User'],
@@ -197,13 +197,13 @@ export const userSwagger = {
           in: 'path',
           required: true,
           description: 'User ID',
-          schema: { type: 'integer' }
-        }
+          schema: { type: 'integer' },
+        },
       ],
       responses: {
         200: { description: 'User deleted successfully' },
-        404: { description: 'User not found' }
-      }
-    }
-  }
+        404: { description: 'User not found' },
+      },
+    },
+  },
 };

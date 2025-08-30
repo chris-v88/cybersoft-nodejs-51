@@ -1,5 +1,5 @@
-import { responseSuccess } from "../common/helpers/response.helpers";
-import { roleService } from "../services/role.service";
+import { responseSuccess } from '../common/helpers/response.helpers';
+import { roleService } from '../services/role.service';
 
 export const roleController = {
   create: async (req, res, next) => {

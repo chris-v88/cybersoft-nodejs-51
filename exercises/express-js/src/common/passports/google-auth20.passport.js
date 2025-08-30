@@ -73,7 +73,7 @@ export const initGoogleAuth20 = () => {
         // User.findOrCreate({ googleId: profile.id }, function (err, user) {
         //   return cb(err, user);
         // });
-      }
-    )
+      },
+    ),
   );
 };
