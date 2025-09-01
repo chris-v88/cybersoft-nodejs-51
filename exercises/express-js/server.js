@@ -1,14 +1,20 @@
 import 'dotenv/config';
 
 import cors from 'cors';
+import { buildSchema } from 'graphql';
 import express from 'express';
 import { createServer } from 'http';
 import rootRouter from './src/routers/root.router';
+import { ruruHTML } from 'ruru/server';
 
 import { appError } from './src/common/app-error/app-error.error';
+import { createHandler } from 'graphql-http/lib/use/express';
 import { responseError } from './src/common/helpers/response.helpers';
 import { initGoogleAuth20 } from './src/common/passports/google-auth20.passport';
 import { initSocket } from './src/common/socket/initi.socket';
+import { schema } from './src/common/graphql/schema.graphql';
+import { root } from './src/common/graphql/root.graphql';
+import { protectGraphQL } from './src/common/graphql/protect.graphql';
 
 const app = express();
 // express.json(); // Middleware to parse JSON bodies
@@ -20,11 +26,47 @@ app.use(express.json()); // Placeholder for middleware
 app.use(
   cors({
     origin: ['http://localhost:3000'],
-  })
+  }),
 );
 
 // luôn luôn để trước router
 initGoogleAuth20();
+
+/**
+ * ruru
+ */
+// Serve the GraphiQL IDE.
+app.get('/ruru', (_req, res) => {
+  res.type('html');
+  res.end(ruruHTML({ endpoint: '/graphql' }));
+});
+
+/**
+ * GraphQL
+ */
+// Create and use the GraphQL handler.
+// app.all(
+//   '/graphql',
+//   createHandler({
+//     // trả callback function
+//     schema: schema,
+//     rootValue: root,
+//   }),
+// );
+app.all(
+    "/graphql",
+    createHandler({
+        schema: schema,
+        rootValue: root,
+        context: async (req) => {
+            // 1) user
+            // 2) null
+            const user = await protectGraphQL(req);
+            return { user: user }
+        },
+    })
+);
+
 
 // router api
 app.use('/api', rootRouter);
@@ -46,7 +88,7 @@ app.use((err, req, res, next) => {
  *
  */
 const httpServer = createServer(app);
-initSocket(httpServer); 
+initSocket(httpServer);
 
 // Đây là cổng của server, không phải cổng của API
 const port = 3069;

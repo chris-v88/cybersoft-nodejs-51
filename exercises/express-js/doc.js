@@ -45,4 +45,8 @@
  * swagger-ui-express : thư viện giúp tạo tài liệu API dựa trên OpenAPI Specification, tạo ra swagger
  *
  * socket.io : thư viện để thêm tính năng real-time cho ứng dụng web, cho phép giao tiếp hai chiều giữa client và server
+ * 
+ * graphql-http, graphql : xây dựng hệ thống API bằng graphQL 
+ * 
+ * ruru : thư viện để tạo mã CAPTCHA (CAPTCHA generation) -- giúp gọi graphQL bằng giao diện riêng
  */
