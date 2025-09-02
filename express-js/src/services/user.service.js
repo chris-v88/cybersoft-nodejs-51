@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { BadResquestException } from '../common/helpers/exception.helper';
+import cloudinary from '../common/cloudinary/init.cloudinary';
 import prisma from '../common/prisma/init.prisma';
 
 export const userService = {
@@ -36,6 +37,62 @@ export const userService = {
 
   avatarCloud: async (req) => {
     console.log('🚀 ~ req.file:', req.file);
+
+    if (!req.file) {
+      throw new BadResquestException('File not found');
+    }
+
+    const user = req.user;
+    await prisma.users.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        avatar: req.file.filename,
+      },
+    });
+
+    // đưa hình lên cloud
+    // cloudinary;
+    // const byteArrayBuffer = fs.readFileSync('shirt.jpg');
+    const byteArrayBuffer = req.file.buffer;
+    const uploadResult = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream({ folder: 'images' }, (error, uploadResult) => {
+          if (error) {
+            return reject(error);
+          }
+          return resolve(uploadResult);
+        })
+        .end(byteArrayBuffer);
+    });
+
+    await prisma.users.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        avatar: uploadResult.public_id,
+      },
+    });
+
+    // xoá hình cũ trên cloud nếu có avaatar
+    if (user.avatar) {
+      // win : \\
+      // mac : //
+
+      // xoa local
+      const oldFilePath = path.join(process.cwd(), 'public/images', user.avatar);
+      if (fs.existsSync(oldFilePath)) {
+        fs.unlinkSync(oldFilePath);
+      }
+
+      // xoa cloud
+      cloudinary.uploader.destroy(user.avatar);
+    }
+
+    console.log('🚀 ~ uploadResult:', uploadResult);
+
     return `avatarCloud`;
   },
 

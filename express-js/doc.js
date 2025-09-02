@@ -55,4 +55,6 @@
  * path : thư viện có sẵn trong Node.js để làm việc với đường dẫn file và thư mục (file and directory paths)
  * 
  * fs : thư viện có sẵn trong Node.js để làm việc với hệ thống file (file system operations)
+ * 
+ * cloudinary : dịch vụ lưu trữ và quản lý hình ảnh, video trên đám mây (cloud-based image and video management)
  */

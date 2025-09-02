@@ -15,6 +15,10 @@ export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 export const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 export const GOOGLE_CLIENT_URI_CALLBACK = process.env.GOOGLE_CLIENT_URI_CALLBACK;
 
+export const CLOUDINARY_NAME = process.env.CLOUDINARY_NAME;
+export const CLOUD_API_KEY = process.env.CLOUDINARY_API_KEY;
+export const CLOUD_API_SECRET = process.env.CLOUDINARY_API_SECRET;
+
 console.log(
   `DATABASE_URL:\t\t ${DATABASE_URL}\n` +
     `ACCESS_TOKEN_SECRET:\t ${ACCESS_TOKEN_SECRET}\n` +

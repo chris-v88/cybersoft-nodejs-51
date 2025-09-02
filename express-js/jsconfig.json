@@ -3,7 +3,7 @@
     "target": "ES2022",
     "module": "ESNext",
     "baseUrl": "./src",
-    "checkJs": true,
+    "checkJs": false,
     "allowJs": true,
     "skipLibCheck": true,
     "paths": {
