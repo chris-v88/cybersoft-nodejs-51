@@ -20,8 +20,11 @@ const app = express();
 // express.json(); // Middleware to parse JSON bodies
 
 /**
- * 
+ * Chỉ dùng cho các file tĩnh (static files) như hình ảnh, css, js
+ * Ví dụ: hình ảnh, css, js, font...
+ * Còn các file động (dynamic files) như .ejs, .hbs... sẽ dùng view engine để render
  */
+app.use(express.static('public'));
 
 // giúp body nhận dc dữ liệu từ client gửi lên
 app.use(express.json()); // Placeholder for middleware

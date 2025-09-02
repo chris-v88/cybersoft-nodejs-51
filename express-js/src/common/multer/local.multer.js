@@ -6,7 +6,7 @@ fs.mkdirSync('images/', { recursive: true });
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'images/');
+    cb(null, 'public/images/');
   },
   filename: function (req, file, cb) {
     const extName = path.extname(file.originalname);
