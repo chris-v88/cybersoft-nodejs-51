@@ -49,4 +49,8 @@
  * graphql-http, graphql : xây dựng hệ thống API bằng graphQL 
  * 
  * ruru : thư viện để tạo mã CAPTCHA (CAPTCHA generation) -- giúp gọi graphQL bằng giao diện riêng
+ * 
+ * multer: thư viện để xử lý việc upload file trong các ứng dụng Node.js (handling file uploads)
+ * 
+ * path : thư viện có sẵn trong Node.js để làm việc với đường dẫn file và thư mục (file and directory paths)
  */

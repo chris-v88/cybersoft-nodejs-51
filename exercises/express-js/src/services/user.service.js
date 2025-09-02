@@ -1,6 +1,19 @@
 import prisma from '../common/prisma/init.prisma';
 
 export const userService = {
+  avatarLocal: (req) => {
+    // req.file is the `avatar` file
+    // req.body will hold the text fields, if there were any
+    console.log('🚀 ~ req.file:', req.file);
+    
+
+    return `avatarLocal`;
+  },
+
+  avatarCloud: async (req) => {
+    return `avatarCloud`;
+  },
+
   create: async (req) => {
     return `This action create`;
   },

@@ -19,6 +19,10 @@ import { protectGraphQL } from './src/common/graphql/protect.graphql';
 const app = express();
 // express.json(); // Middleware to parse JSON bodies
 
+/**
+ * 
+ */
+
 // giúp body nhận dc dữ liệu từ client gửi lên
 app.use(express.json()); // Placeholder for middleware
 
