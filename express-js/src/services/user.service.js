@@ -36,8 +36,6 @@ export const userService = {
   },
 
   avatarCloud: async (req) => {
-    console.log('🚀 ~ req.file:', req.file);
-
     if (!req.file) {
       throw new BadResquestException('File not found');
     }
@@ -87,13 +85,16 @@ export const userService = {
         fs.unlinkSync(oldFilePath);
       }
 
+      // rename
+      // cloudinary.uploader.rename("")
+
       // xoa cloud
       cloudinary.uploader.destroy(user.avatar);
     }
 
     console.log('🚀 ~ uploadResult:', uploadResult);
 
-    return `avatarCloud`;
+    return true;
   },
 
   create: async (req) => {

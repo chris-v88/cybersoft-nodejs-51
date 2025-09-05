@@ -1,6 +1,8 @@
+import prisma from '../prisma/init.prisma';
+
 import { tokenService } from '../../services/token.service';
 import { UnauthorizedException } from '../helpers/exception.helper';
-import prisma from '../prisma/init.prisma';
+
 
 export const protectGraphQL = async (req) => {
   try {
@@ -11,7 +13,7 @@ export const protectGraphQL = async (req) => {
     if (type !== 'Bearer') throw new UnauthorizedException('Type Token Tnvalid');
     if (!accessToken) throw new UnauthorizedException('Not Access Token');
 
-    const { userId } = tokenService.verifyAccesToken(accessToken);
+    const { userId } = tokenService.verifyAccessToken(accessToken);
 
     const user = await prisma.users.findUnique({
       where: {
