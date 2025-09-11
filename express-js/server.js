@@ -1,10 +1,10 @@
 import 'dotenv/config';
 
 import cors from 'cors';
-import { buildSchema } from 'graphql';
 import express from 'express';
-import { createServer } from 'http';
 import rootRouter from './src/routers/root.router';
+import { buildSchema } from 'graphql';
+import { createServer } from 'http';
 import { ruruHTML } from 'ruru/server';
 
 import { appError } from './src/common/app-error/app-error.error';

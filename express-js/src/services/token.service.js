@@ -12,7 +12,6 @@ export const tokenService = {
       expiresIn: ACCESS_TOKEN_EXPIRES_IN,
     });
 
-    // ở nhiều cty, sẽ có thêm token khác nữa, tuỳ theo chiến lược cty
     const refreshToken = jwt.sign({ userId: userId }, ACCESS_REFRESH_SECRET, {
       expiresIn: ACCESS_REFRESH_EXPIRES_IN,
     });

@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
-import { ConfigService } from './modules-system/config/config.service'; // Import ConfigService để lấy port từ .env
+import { ConfigService } from './modules/modules-system/config/config.service'; // Import ConfigService để lấy port từ .env
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
