@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from './modules/modules-system/config/config.service'; // Import ConfigService để lấy port từ .env
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,6 +16,7 @@ async function bootstrap() {
       },
     }),
   ); // Bật kiểm tra dữ liệu (validation) cho toàn bộ ứng dụng
+  app.useGlobalInterceptors(new LoggingInterceptor());
 
   // Tạo logger để in thông tin khi server chạy
   const logger = new Logger('Bootstrap');
